@@ -1,0 +1,78 @@
+.home {
+  padding: 60rpx 40rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.header {
+  margin-bottom: 60rpx;
+}
+
+.title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+
+.subtitle {
+  display: block;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.wordset-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.wordset-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 36rpx 32rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.wordset-card:active {
+  background: #f9f9f9;
+}
+
+.wordset-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  flex: 1;
+}
+
+.wordset-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.wordset-subtitle {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.wordset-count {
+  display: flex;
+  align-items: baseline;
+  gap: 4rpx;
+}
+
+.count-number {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #4A90D9;
+}
+
+.count-label {
+  font-size: 24rpx;
+  color: #999;
+}

@@ -1,0 +1,23 @@
+<view class="poster-mask" wx:if="{{show}}">
+  <view class="poster-container" catchtap="">
+    <view class="poster-header">
+      <text class="poster-title">分享打卡海报</text>
+      <view class="poster-close" catchtap="onClose">
+        <text>×</text>
+      </view>
+    </view>
+
+    <view class="poster-canvas-wrap">
+      <canvas type="2d" id="posterCanvas" class="poster-canvas"></canvas>
+    </view>
+
+    <view class="poster-actions">
+      <view class="action-btn action-btn-save" catchtap="onSaveImage">
+        <text>保存到相册</text>
+      </view>
+      <view class="action-btn action-btn-share" catchtap="onShareFriend">
+        <text>分享好友</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,97 @@
+<wxs module="utils">
+module.exports = {
+  formatDuration: function(seconds) {
+    if (seconds < 60) return seconds + '秒';
+    var min = Math.floor(seconds / 60);
+    var sec = seconds % 60;
+    return sec > 0 ? min + '分' + sec + '秒' : min + '分钟';
+  }
+}
+</wxs>
+
+<view class="stats">
+  <!-- 打卡天数 -->
+  <view class="streak-section">
+    <view class="streak-item">
+      <text class="streak-number">{{streakDays}}</text>
+      <text class="streak-label">连续打卡(天)</text>
+    </view>
+    <view class="streak-divider"></view>
+    <view class="streak-item">
+      <text class="streak-number">{{totalStudyDays}}</text>
+      <text class="streak-label">累计打卡(天)</text>
+    </view>
+  </view>
+
+  <!-- 学习热力图 -->
+  <view class="section-card">
+    <view class="section-title">{{currentMonth}}学习记录</view>
+    <view class="calendar-header">
+      <text class="calendar-week" wx:for="{{weekLabels}}" wx:key="*this">{{item}}</text>
+    </view>
+    <view class="calendar-grid">
+      <view
+        class="calendar-day {{item.studied ? 'studied' : ''}} {{item.isToday ? 'today' : ''}}"
+        wx:for="{{calendarDays}}"
+        wx:key="day"
+      >
+        <text wx:if="{{item.day}}">{{item.day}}</text>
+      </view>
+    </view>
+    <view class="calendar-legend">
+      <view class="legend-item">
+        <view class="legend-dot"></view>
+        <text class="legend-text">已学习</text>
+      </view>
+      <view class="legend-item">
+        <view class="legend-dot legend-dot-today"></view>
+        <text class="legend-text">今天</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日学习 -->
+  <view class="section-card">
+    <view class="section-title">今日学习</view>
+    <view class="today-stats">
+      <view class="today-item">
+        <text class="today-number">{{todayCount}}</text>
+        <text class="today-label">已学单词</text>
+      </view>
+      <view class="today-item">
+        <text class="today-number">{{utils.formatDuration(todayDuration)}}</text>
+        <text class="today-label">学习时长</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 词表进度 -->
+  <view class="section-card" wx:if="{{wordSetProgress.length > 0}}">
+    <view class="section-title">词表进度</view>
+    <view class="progress-list">
+      <view class="progress-item" wx:for="{{wordSetProgress}}" wx:key="title">
+        <view class="progress-info">
+          <text class="progress-name">{{item.title}}</text>
+          <text class="progress-count">{{item.learned}} / {{item.total}}</text>
+        </view>
+        <view class="progress-bar-bg">
+          <view class="progress-bar-fill" style="width: {{item.percent}}%"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 分享按钮 -->
+  <view class="share-section">
+    <view class="share-btn" bindtap="onSharePoster">
+      <text class="share-btn-text">分享打卡海报</text>
+    </view>
+  </view>
+
+  <!-- 海报组件 -->
+  <share-poster
+    show="{{showPoster}}"
+    streakDays="{{streakDays}}"
+    bind:close="onClosePoster"
+  ></share-poster>
+</view>

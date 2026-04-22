@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "背诵统计",
+  "usingComponents": {
+    "share-poster": "/components/sharePoster/index"
+  }
+}

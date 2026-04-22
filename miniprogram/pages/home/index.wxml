@@ -1,0 +1,25 @@
+<view class="home">
+  <view class="header">
+    <text class="title">选择背诵范围</text>
+    <text class="subtitle">请选择一个词表开始背单词</text>
+  </view>
+
+  <view class="wordset-list">
+    <view
+      class="wordset-card"
+      wx:for="{{wordSets}}"
+      wx:key="setId"
+      data-setid="{{item.setId}}"
+      bindtap="onSelectWordSet"
+    >
+      <view class="wordset-info">
+        <text class="wordset-title">{{item.title}}</text>
+        <text class="wordset-subtitle">{{item.subtitle}}</text>
+      </view>
+      <view class="wordset-count">
+        <text class="count-number">{{item.totalWords}}</text>
+        <text class="count-label">词</text>
+      </view>
+    </view>
+  </view>
+</view>

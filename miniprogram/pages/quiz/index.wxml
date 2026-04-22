@@ -1,0 +1,110 @@
+<wxs module="utils">
+module.exports = {
+  hasContent: function(arr) {
+    return arr && arr.length > 0;
+  }
+}
+</wxs>
+
+<view class="quiz">
+  <!-- 顶部导航 -->
+  <view class="top-bar">
+    <view class="top-btn" bindtap="goHome">
+      <text class="top-btn-text">首页</text>
+    </view>
+    <view class="top-bar-right">
+      <view class="top-btn" bindtap="switchRange">
+        <text class="top-btn-text">切换范围</text>
+      </view>
+      <view class="top-btn" bindtap="goStats">
+        <text class="top-btn-text">背诵统计</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 进度条 -->
+  <view class="progress-section">
+    <view class="progress-bar-bg">
+      <view class="progress-bar-fill" style="width: {{progressPercent}}%"></view>
+    </view>
+    <text class="progress-text">{{currentIndex + 1}} / {{totalWords}}</text>
+  </view>
+
+  <view class="wordset-tag">{{wordSetTitle}}</view>
+
+  <!-- 单词区 -->
+  <view class="word-card" wx:if="{{currentWord}}">
+    <view class="word-main">
+      <text class="word-en">{{currentWord.word}}</text>
+      <view class="word-meta">
+        <text class="word-pos" wx:if="{{currentWord.pos}}">{{currentWord.pos}}</text>
+        <text class="word-meaning">{{currentWord.meaning}}</text>
+      </view>
+    </view>
+
+    <view class="alternatives" wx:if="{{utils.hasContent(currentWord.alternatives)}}">
+      <text class="alt-text">也作：{{currentWord.alternatives.join(' / ')}}</text>
+    </view>
+  </view>
+
+  <!-- 例句区 -->
+  <view class="section" wx:if="{{utils.hasContent(currentWord.examples)}}" bindtap="toggleExamples">
+    <view class="section-header">
+      <text class="section-icon">{{showExamples ? '📖' : '📕'}}</text>
+      <text class="section-title">例句</text>
+      <text class="section-toggle">{{showExamples ? '收起' : '展开'}}</text>
+    </view>
+
+    <view class="section-content" wx:if="{{showExamples}}">
+      <view class="example-item" wx:for="{{currentWord.examples}}" wx:key="index">
+        <text class="example-en">{{item.en}}</text>
+        <text class="example-zh" wx:if="{{item.zh}}">{{item.zh}}</text>
+        <text class="example-source" wx:if="{{item.source}}">出自：{{item.source}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 练习题区 -->
+  <view class="section" wx:if="{{utils.hasContent(currentWord.exercises)}}">
+    <view class="section-header" bindtap="toggleExercise">
+      <text class="section-icon">✏️</text>
+      <text class="section-title">练习</text>
+      <text class="section-toggle">{{showExercise ? '收起' : '展开'}}</text>
+    </view>
+
+    <view class="section-content" wx:if="{{showExercise}}">
+      <view class="exercise-item" wx:for="{{currentWord.exercises}}" wx:key="index">
+        <view class="exercise-type-tag" wx:if="{{item.type === 'choice'}}">选择题</view>
+        <view class="exercise-type-tag" wx:elif="{{item.type === 'fill'}}">填空题</view>
+
+        <!-- 填空题 -->
+        <view wx:if="{{item.type === 'fill'}}">
+          <text class="exercise-question">{{item.question}}</text>
+          <view class="exercise-answer" wx:if="{{exerciseRevealed}}">
+            <text class="answer-label">答案：</text>
+            <text class="answer-text">{{item.answer}}</text>
+          </view>
+        </view>
+
+        <!-- 选择题 -->
+        <view wx:elif="{{item.type === 'choice'}}">
+          <text class="exercise-question">{{item.question}}</text>
+          <view class="exercise-answer" wx:if="{{exerciseRevealed}}">
+            <text class="answer-label">答案：</text>
+            <text class="answer-text">{{item.answer}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部导航 -->
+  <view class="bottom-nav">
+    <view class="nav-btn nav-btn-prev {{currentIndex <= 0 ? 'disabled' : ''}}" bindtap="prevWord">
+      <text>上一个</text>
+    </view>
+    <view class="nav-btn nav-btn-next {{currentIndex >= totalWords - 1 ? 'disabled' : ''}}" bindtap="nextWord">
+      <text>{{showExercise && !exerciseRevealed ? '揭晓答案' : '下一个'}}</text>
+    </view>
+  </view>
+</view>
