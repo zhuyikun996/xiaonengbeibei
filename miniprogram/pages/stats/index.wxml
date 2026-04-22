@@ -91,7 +91,7 @@ module.exports = {
   <!-- 海报组件 -->
   <share-poster
     show="{{showPoster}}"
-    streakDays="{{streakDays}}"
+    streakDays="{{totalStudyDays}}"
     bind:close="onClosePoster"
   ></share-poster>
 </view>

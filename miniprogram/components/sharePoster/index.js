@@ -241,7 +241,7 @@ Component({
       ctx.textBaseline = 'alphabetic';
       ctx.fillStyle = '#999999';
       ctx.font = '28px sans-serif';
-      ctx.fillText('连续打卡', width / 2, streakCardY + 60);
+      ctx.fillText('累计打卡', width / 2, streakCardY + 60);
 
       // 打卡天数数字
       ctx.fillStyle = '#333333';
