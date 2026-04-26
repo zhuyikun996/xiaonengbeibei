@@ -1,8 +1,26 @@
 // pages/stats/index.js
 const cambridgeA2Day1 = require('../../data/wordsets/cambridge-a2-day1');
+const cambridgeA2Day2 = require('../../data/wordsets/cambridge-a2-day2');
+const cambridgeA2Day3 = require('../../data/wordsets/cambridge-a2-day3');
+const cambridgeA2Day4 = require('../../data/wordsets/cambridge-a2-day4');
+const cambridgeA2Day5 = require('../../data/wordsets/cambridge-a2-day5');
+const cambridgeA2Day6 = require('../../data/wordsets/cambridge-a2-day6');
+const cambridgeA2Day7 = require('../../data/wordsets/cambridge-a2-day7');
+const cambridgeA2Day8 = require('../../data/wordsets/cambridge-a2-day8');
+const cambridgeA2Day9 = require('../../data/wordsets/cambridge-a2-day9');
+const cambridgeA2Day10 = require('../../data/wordsets/cambridge-a2-day10');
 
 const WORD_SETS = {
   'cambridge-a2-day1': cambridgeA2Day1,
+  'cambridge-a2-day2': cambridgeA2Day2,
+  'cambridge-a2-day3': cambridgeA2Day3,
+  'cambridge-a2-day4': cambridgeA2Day4,
+  'cambridge-a2-day5': cambridgeA2Day5,
+  'cambridge-a2-day6': cambridgeA2Day6,
+  'cambridge-a2-day7': cambridgeA2Day7,
+  'cambridge-a2-day8': cambridgeA2Day8,
+  'cambridge-a2-day9': cambridgeA2Day9,
+  'cambridge-a2-day10': cambridgeA2Day10,
 };
 
 function getToday() {

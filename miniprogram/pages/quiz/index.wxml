@@ -2,6 +2,9 @@
 module.exports = {
   hasContent: function(arr) {
     return arr && arr.length > 0;
+  },
+  join: function(arr, sep) {
+    return arr.join(sep);
   }
 }
 </wxs>
@@ -43,7 +46,7 @@ module.exports = {
     </view>
 
     <view class="alternatives" wx:if="{{utils.hasContent(currentWord.alternatives)}}">
-      <text class="alt-text">也作：{{currentWord.alternatives.join(' / ')}}</text>
+      <text class="alt-text">也作：{{utils.join(currentWord.alternatives, ' / ')}}</text>
     </view>
   </view>
 
