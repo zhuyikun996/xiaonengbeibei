@@ -235,8 +235,8 @@ module.exports = {
           "source": ""
         },
         {
-          "en": "Nuts and fruit make a healthy snack.",
-          "zh": "坚果和水果是健康的小吃。",
+          "en": "You can have some snacks if you're hungry.",
+          "zh": "如果你饿了，可以吃些零食。",
           "source": ""
         }
       ],
@@ -596,8 +596,8 @@ module.exports = {
       "exercises": [
         {
           "type": "fill",
-          "question": "Your arm has a _______ inside it.",
-          "answer": "bone"
+          "question": "_____ are dogs' favourite food.",
+          "answer": "Bones"
         }
       ]
     },
@@ -828,12 +828,12 @@ module.exports = {
         {
           "en": "Some girls put up their hands and so did I.",
           "zh": "有些女孩举起了手，我也举了。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "Hand over the mark sheets to the Assessor.",
           "zh": "把评分表交给考官。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -855,12 +855,12 @@ module.exports = {
         {
           "en": "Yujia doesn't serve sushi to customers at his family's restaurant.",
           "zh": "宇佳家里的餐馆不向顾客提供寿司。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "The school is going to stop offering lunch to students after next week.",
           "zh": "学校下周后将不再给学生提供午餐。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -882,12 +882,12 @@ module.exports = {
         {
           "en": "That sounds great!",
           "zh": "那听起来很棒！",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "You sound happy.",
           "zh": "你听起来很开心。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -909,12 +909,12 @@ module.exports = {
         {
           "en": "If you want cake, there's a slice left in the fridge.",
           "zh": "如果你想吃蛋糕，冰箱里还剩下一片。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "Would you like another slice of beef?",
           "zh": "你还想再来一片牛肉吗？",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -936,12 +936,12 @@ module.exports = {
         {
           "en": "Do you think fruit is healthy?",
           "zh": "你觉得水果健康吗？",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "We can be healthy for a change!",
           "zh": "我们这次可以健康一点了！",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -963,12 +963,12 @@ module.exports = {
         {
           "en": "She feels excited about seeing new places.",
           "zh": "她一想到要看新地方就感到兴奋。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "I feel very bad.",
           "zh": "我感觉很难受。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -990,12 +990,12 @@ module.exports = {
         {
           "en": "He was sick, so I went swimming instead.",
           "zh": "他生病了，所以我改去游泳了。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "I feel sick reading on the bus.",
           "zh": "我在公交车上看书会觉得恶心。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1017,12 +1017,12 @@ module.exports = {
         {
           "en": "Don't worry!",
           "zh": "别担心！",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "He spent most of the time worrying about what to do.",
           "zh": "他大部分时间都在担心该怎么办。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1044,12 +1044,12 @@ module.exports = {
         {
           "en": "Your story could take place in winter, or in the mountains perhaps.",
           "zh": "你的故事可以发生在冬天，也可能发生在山里。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "Perhaps staff will want to know what's near the building.",
           "zh": "工作人员也许想知道楼附近有什么。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1071,12 +1071,12 @@ module.exports = {
         {
           "en": "Everyone else will probably be in jeans and T-shirts.",
           "zh": "其他人大概都会穿牛仔裤和T恤。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "In the future, the path will probably change.",
           "zh": "将来这条路可能会改变。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1098,12 +1098,12 @@ module.exports = {
         {
           "en": "I'm getting a cold.",
           "zh": "我好像要感冒了。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "We can keep them cold under the beach umbrella.",
           "zh": "我们可以把它们放在沙滩伞下保持凉爽。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1125,12 +1125,12 @@ module.exports = {
         {
           "en": "It's softer when you fall on snow.",
           "zh": "摔在雪地上会更软一些。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "In some areas, the number of bees has fallen by 90%.",
           "zh": "在一些地区，蜜蜂数量已经下降了90%。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1152,12 +1152,12 @@ module.exports = {
         {
           "en": "What about taking some medicine for the pain?",
           "zh": "吃点药来止痛怎么样？",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "She was in constant pain.",
           "zh": "她一直在疼痛中。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1179,12 +1179,12 @@ module.exports = {
         {
           "en": "He's got an appointment this morning.",
           "zh": "他今天上午有个预约。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "She has a dentist's appointment.",
           "zh": "她预约了看牙医。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1206,12 +1206,12 @@ module.exports = {
         {
           "en": "What's the matter?",
           "zh": "怎么了？",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "It doesn't matter which day he goes.",
           "zh": "他哪天去都不要紧。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1233,12 +1233,12 @@ module.exports = {
         {
           "en": "The only trouble is that they are heavy.",
           "zh": "唯一的问题是它们太重了。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "I'm having trouble getting used to this cold weather.",
           "zh": "我很难适应这种寒冷的天气。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1260,12 +1260,12 @@ module.exports = {
         {
           "en": "What about taking some medicine for the pain?",
           "zh": "吃点药缓解疼痛怎么样？",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "Did you remember to take your medicine?",
           "zh": "你记得吃药了吗？",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1287,12 +1287,12 @@ module.exports = {
         {
           "en": "She had to change her plans after an accident.",
           "zh": "发生事故后，她不得不改变计划。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "The accident happened on the way home.",
           "zh": "事故发生在回家的路上。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1314,12 +1314,12 @@ module.exports = {
         {
           "en": "Suddenly, there was a power failure that happened in my house.",
           "zh": "突然，我家发生了停电。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "What happened to your pen?",
           "zh": "你的钢笔怎么了？",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1341,12 +1341,12 @@ module.exports = {
         {
           "en": "It is not dangerous there, and we can watch people sailing.",
           "zh": "那里并不危险，我们还可以看别人划船。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "I think riding a horse is dangerous.",
           "zh": "我觉得骑马很危险。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1368,12 +1368,12 @@ module.exports = {
         {
           "en": "He died on 10th January, 2016.",
           "zh": "他于2016年1月10日去世。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "Plants die without water.",
           "zh": "植物没有水会死。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1395,12 +1395,12 @@ module.exports = {
         {
           "en": "What do I need to get better at next term?",
           "zh": "下学期我需要在哪些方面提高？",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "You'll need a coat to keep warm.",
           "zh": "你需要一件外套来保暖。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1422,12 +1422,12 @@ module.exports = {
         {
           "en": "It's quicker to make a sandwich, but it doesn't taste as good.",
           "zh": "做三明治更快，但味道没那么好。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "You taste with your tongue.",
           "zh": "你用舌头品尝味道。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1449,12 +1449,12 @@ module.exports = {
         {
           "en": "I need some exercise. I've been at my desk all week.",
           "zh": "我需要运动一下，我整个星期都坐在书桌前。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "Our Chinese teacher gave us enjoyable exercises in class.",
           "zh": "我们的语文老师在课堂上给了我们一些有趣的练习。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1476,12 +1476,12 @@ module.exports = {
         {
           "en": "You can swim in the lake or walk in the forest.",
           "zh": "你可以在湖里游泳，也可以在森林里散步。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "Walk down this hill, and it's on your right.",
           "zh": "沿着这座小山往下走，它就在你的右边。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1503,12 +1503,12 @@ module.exports = {
         {
           "en": "I found a nice green T-shirt that fits me.",
           "zh": "我找到了一件很合身的绿色T恤。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "You're still doing lots to keep fit.",
           "zh": "你还在做很多事来保持健康。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1530,12 +1530,12 @@ module.exports = {
         {
           "en": "The people there seemed to be having a great time.",
           "zh": "那里的人们似乎玩得很开心。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "It's like a dream and nothing seems real.",
           "zh": "这像一场梦，一切都显得不真实。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1557,12 +1557,12 @@ module.exports = {
         {
           "en": "I was too young and didn't know how to look after myself.",
           "zh": "我那时太小了，不知道该如何照顾自己。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "Pat's neighbour gave her a young cow to keep and look after.",
           "zh": "帕特的邻居给了她一头小牛，让她养着并照顾它。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1584,12 +1584,12 @@ module.exports = {
         {
           "en": "It was hard when I hurt myself or got ill.",
           "zh": "当我受伤或生病时，那段时间很难熬。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "I hurt myself yesterday, so I can't play today.",
           "zh": "我昨天把自己弄伤了，所以今天不能玩。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [
@@ -1611,12 +1611,12 @@ module.exports = {
         {
           "en": "I haven't got enough soap. I've just checked.",
           "zh": "我的肥皂不够了，我刚刚检查过。",
-          "source": "day2课件"
+          "source": ""
         },
         {
           "en": "Students can check the cost of joining a club by going online.",
           "zh": "学生可以通过上网查看参加社团的费用。",
-          "source": "day2课件"
+          "source": ""
         }
       ],
       "exercises": [

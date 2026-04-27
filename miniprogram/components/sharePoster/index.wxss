@@ -80,10 +80,10 @@
 }
 
 .action-btn-share {
-  background: #F0F0F0;
-  color: #333;
+  background: #F5A623;
+  color: #fff;
 }
 
 .action-btn-share:active {
-  background: #E5E5E5;
+  background: #E09520;
 }

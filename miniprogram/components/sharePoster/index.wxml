@@ -12,11 +12,8 @@
     </view>
 
     <view class="poster-actions">
-      <view class="action-btn action-btn-save" catchtap="onSaveImage">
-        <text>保存到相册</text>
-      </view>
       <view class="action-btn action-btn-share" catchtap="onShareFriend">
-        <text>分享好友</text>
+        <text>分享</text>
       </view>
     </view>
   </view>

@@ -33,10 +33,93 @@ module.exports = {
     <text class="progress-text">{{currentIndex + 1}} / {{totalWords}}</text>
   </view>
 
+  <view class="mode-switch">
+    <view
+      class="mode-btn {{mode === 'study' ? 'active' : ''}}"
+      data-mode="study"
+      bindtap="switchMode"
+    >
+      <text>学习模式</text>
+    </view>
+    <view
+      class="mode-btn {{mode === 'test' ? 'active' : ''}}"
+      data-mode="test"
+      bindtap="switchMode"
+    >
+      <text>自测模式</text>
+    </view>
+  </view>
+
+  <view class="session-stats" wx:if="{{mode === 'test'}}">
+    <view class="session-stat">
+      <text class="session-stat-value">{{correctCount}}</text>
+      <text class="session-stat-label">答对</text>
+    </view>
+    <view class="session-stat">
+      <text class="session-stat-value">{{wrongCount}}</text>
+      <text class="session-stat-label">答错</text>
+    </view>
+    <view class="session-stat">
+      <text class="session-stat-value">{{streakCount}}</text>
+      <text class="session-stat-label">连对</text>
+    </view>
+  </view>
+
   <view class="wordset-tag">{{wordSetTitle}}</view>
 
+  <view
+    class="test-card"
+    wx:if="{{mode === 'test' && currentExercise && currentExercise.type === 'choice' && !answered}}"
+  >
+    <view class="test-card-tag">自测题</view>
+    <text class="test-card-question">{{currentExercise.prompt}}</text>
+    <view class="choice-list">
+      <view
+        class="choice-item"
+        wx:for="{{choiceOptions}}"
+        wx:key="key"
+        data-key="{{item.key}}"
+        bindtap="onSelectChoice"
+      >
+        <text class="choice-key">{{item.key}}</text>
+        <text class="choice-text">{{item.text}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view
+    class="test-card"
+    wx:if="{{mode === 'test' && currentExercise && currentExercise.type === 'fill' && !answered}}"
+  >
+    <view class="test-card-tag">填空题</view>
+    <text class="test-card-question">{{currentExercise.prompt}}</text>
+    <text class="test-card-hint">提示：{{currentWord.meaning}}</text>
+    <input
+      class="fill-input"
+      placeholder="输入你的答案"
+      value="{{fillInput}}"
+      bindinput="onFillInput"
+      bindconfirm="onSubmitFill"
+      adjust-position="{{true}}"
+    />
+    <view class="fill-submit-btn" bindtap="onSubmitFill">
+      <text>确认</text>
+    </view>
+  </view>
+
+  <view class="feedback-card {{isCorrect ? 'correct' : 'wrong'}}" wx:if="{{mode === 'test' && answered}}">
+    <text class="feedback-title">{{isCorrect ? '回答正确' : '回答错误'}}</text>
+    <text class="feedback-text">{{feedbackText}}</text>
+    <text class="feedback-extra" wx:if="{{currentExerciseAnswerDisplay}}">
+      正确答案：{{currentExerciseAnswerDisplay}}
+    </text>
+  </view>
+
   <!-- 单词区 -->
-  <view class="word-card" wx:if="{{currentWord}}">
+  <view
+    class="word-card"
+    wx:if="{{currentWord && (mode === 'study' || answered || !currentExercise)}}"
+  >
     <view class="word-main">
       <text class="word-en">{{currentWord.word}}</text>
       <view class="word-meta">
@@ -51,7 +134,11 @@ module.exports = {
   </view>
 
   <!-- 例句区 -->
-  <view class="section" wx:if="{{utils.hasContent(currentWord.examples)}}" bindtap="toggleExamples">
+  <view
+    class="section"
+    wx:if="{{utils.hasContent(currentWord.examples) && (mode === 'study' || answered || !currentExercise)}}"
+    bindtap="toggleExamples"
+  >
     <view class="section-header">
       <text class="section-icon">{{showExamples ? '📖' : '📕'}}</text>
       <text class="section-title">例句</text>
@@ -68,7 +155,10 @@ module.exports = {
   </view>
 
   <!-- 练习题区 -->
-  <view class="section" wx:if="{{utils.hasContent(currentWord.exercises)}}">
+  <view
+    class="section"
+    wx:if="{{utils.hasContent(currentWord.exercises) && (mode === 'study' || !currentExercise)}}"
+  >
     <view class="section-header" bindtap="toggleExercise">
       <text class="section-icon">✏️</text>
       <text class="section-title">练习</text>
@@ -106,8 +196,18 @@ module.exports = {
     <view class="nav-btn nav-btn-prev {{currentIndex <= 0 ? 'disabled' : ''}}" bindtap="prevWord">
       <text>上一个</text>
     </view>
-    <view class="nav-btn nav-btn-next {{currentIndex >= totalWords - 1 ? 'disabled' : ''}}" bindtap="nextWord">
-      <text>{{showExercise && !exerciseRevealed ? '揭晓答案' : '下一个'}}</text>
+    <view
+      class="nav-btn {{currentIndex >= totalWords - 1 && mode === 'study' ? 'nav-btn-share' : 'nav-btn-next'}} {{currentIndex >= totalWords - 1 && mode !== 'study' ? 'disabled' : ''}}"
+      bindtap="{{currentIndex >= totalWords - 1 && mode === 'study' ? 'onSharePoster' : 'nextWord'}}"
+    >
+      <text>{{currentIndex >= totalWords - 1 && mode === 'study' ? '分享打卡' : nextButtonText}}</text>
     </view>
   </view>
+
+  <!-- 分享海报 -->
+  <share-poster
+    show="{{showPoster}}"
+    streakDays="{{streakDaysForPoster}}"
+    bind:close="onClosePoster"
+  ></share-poster>
 </view>
