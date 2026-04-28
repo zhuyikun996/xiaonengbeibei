@@ -289,6 +289,12 @@
   color: #333;
 }
 
+.word-phonetic {
+  font-size: 26rpx;
+  color: #999;
+  line-height: 1.4;
+}
+
 .word-meta {
   display: flex;
   flex-direction: row;

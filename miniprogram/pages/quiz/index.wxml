@@ -122,6 +122,7 @@ module.exports = {
   >
     <view class="word-main">
       <text class="word-en">{{currentWord.word}}</text>
+      <text class="word-phonetic" wx:if="{{currentWord.phonetic}}">{{currentWord.phonetic}}</text>
       <view class="word-meta">
         <text class="word-pos" wx:if="{{currentWord.pos}}">{{currentWord.pos}}</text>
         <text class="word-meaning">{{currentWord.meaning}}</text>

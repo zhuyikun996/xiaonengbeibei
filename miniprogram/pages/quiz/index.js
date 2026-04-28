@@ -9,6 +9,7 @@ const cambridgeA2Day7 = require('../../data/wordsets/cambridge-a2-day7');
 const cambridgeA2Day8 = require('../../data/wordsets/cambridge-a2-day8');
 const cambridgeA2Day9 = require('../../data/wordsets/cambridge-a2-day9');
 const cambridgeA2Day10 = require('../../data/wordsets/cambridge-a2-day10');
+const phonetics = require('../../data/phonetics');
 
 const WORD_SETS = {
   'cambridge-a2-day1': cambridgeA2Day1,
@@ -390,11 +391,17 @@ Page({
     const hasExercise = currentWord && currentWord.exercises && currentWord.exercises.length > 0;
     const isTestMode = this.data.mode === 'test';
 
+    // 附加音标
+    const wordWithPhonetic = currentWord ? {
+      ...currentWord,
+      phonetic: phonetics[currentWord.word] || '',
+    } : null;
+
     this.setData({
       ...(wordSetTitle ? { wordSetTitle } : {}),
       currentIndex,
       totalWords,
-      currentWord,
+      currentWord: wordWithPhonetic,
       currentExercise: exerciseState.currentExercise,
       currentExerciseAnswerDisplay: exerciseState.currentExerciseAnswerDisplay,
       choiceOptions: exerciseState.choiceOptions,
