@@ -30,12 +30,17 @@
 
 .wordset-card {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   background: #fff;
   border-radius: 16rpx;
   padding: 36rpx 32rpx;
   box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.wordset-card--active {
+  border-left: 6rpx solid #4A90D9;
 }
 
 .wordset-card:active {
@@ -74,5 +79,52 @@
 
 .count-label {
   font-size: 24rpx;
+  color: #999;
+}
+
+/* 进度条 */
+.wordset-progress {
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12rpx;
+  background: #f0f0f0;
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: #4A90D9;
+  border-radius: 6rpx;
+  transition: width 0.3s ease;
+}
+
+.progress-bar-fill--done {
+  background: #52c41a;
+}
+
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8rpx;
+}
+
+.progress-label {
+  font-size: 22rpx;
+  color: #666;
+  font-weight: 600;
+}
+
+.progress-label--done {
+  color: #52c41a;
+}
+
+.progress-detail {
+  font-size: 22rpx;
   color: #999;
 }

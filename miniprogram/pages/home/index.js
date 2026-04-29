@@ -9,19 +9,38 @@ Page({
 
   onLoad(options) {
     const fromQuiz = options.from === 'quiz';
+    const wordSets = app.globalData.wordSets || [];
+    const currentSetId = wx.getStorageSync('currentWordSetId') || '';
     this.setData({
-      wordSets: app.globalData.wordSets || [],
+      wordSets: this._attachProgress(wordSets),
       fromQuiz,
+      currentSetId,
     });
   },
 
   onShow() {
-    // 如果是从 quiz 页切过来的，返回时需要刷新词表列表
-    if (this.data.fromQuiz) {
-      this.setData({
-        wordSets: app.globalData.wordSets || [],
-      });
-    }
+    const wordSets = app.globalData.wordSets || [];
+    const currentSetId = wx.getStorageSync('currentWordSetId') || '';
+    this.setData({
+      wordSets: this._attachProgress(wordSets),
+      currentSetId,
+    });
+  },
+
+  _attachProgress(wordSets) {
+    return wordSets.map(ws => {
+      const progressIndex = wx.getStorageSync(`progress_${ws.setId}`);
+      const hasStarted = progressIndex !== '' && progressIndex !== undefined && progressIndex !== null;
+      const learned = hasStarted ? progressIndex + 1 : 0;
+      const percent = Math.round(learned / ws.totalWords * 100);
+      const completed = percent >= 100;
+      return {
+        ...ws,
+        learned,
+        percent,
+        completed,
+      };
+    });
   },
 
   onSelectWordSet(e) {

@@ -6,7 +6,7 @@
 
   <view class="wordset-list">
     <view
-      class="wordset-card"
+      class="wordset-card {{item.setId === currentSetId ? 'wordset-card--active' : ''}}"
       wx:for="{{wordSets}}"
       wx:key="setId"
       data-setid="{{item.setId}}"
@@ -19,6 +19,16 @@
       <view class="wordset-count">
         <text class="count-number">{{item.totalWords}}</text>
         <text class="count-label">词</text>
+      </view>
+      <view class="wordset-progress">
+        <view class="progress-bar">
+          <view class="progress-bar-fill {{item.completed ? 'progress-bar-fill--done' : ''}}" style="width: {{item.percent}}%"></view>
+        </view>
+        <view class="progress-text">
+          <text wx:if="{{item.completed}}" class="progress-label progress-label--done">已完成</text>
+          <text wx:else class="progress-label">{{item.percent}}%</text>
+          <text class="progress-detail">已学 {{item.learned}}/{{item.totalWords}} 词</text>
+        </view>
       </view>
     </view>
   </view>
