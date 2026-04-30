@@ -25,8 +25,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "What do people often eat after the main meal?\nA. dessert\nB. bandage",
-          "answer": "A"
+          "prompt": "What do people often eat after the main meal?", "options": [{"key":"A","text":"dessert"},{"key":"B","text":"bandage"}], "answer": "A"
         }
       ]
     },
@@ -79,8 +78,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "If you want food, you feel ____.\nA. hungry\nB. thirsty",
-          "answer": "A"
+          "prompt": "If you want food, you feel ____.", "options": [{"key":"A","text":"hungry"},{"key":"B","text":"thirsty"}], "answer": "A"
         }
       ]
     },
@@ -106,8 +104,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which meal do we eat in the morning?\nA. breakfast\nB. dinner",
-          "answer": "A"
+          "prompt": "Which meal do we eat in the morning?", "options": [{"key":"A","text":"breakfast"},{"key":"B","text":"dinner"}], "answer": "A"
         }
       ]
     },
@@ -162,8 +159,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which word can also mean the evening meal?\nA. supper\nB. snack",
-          "answer": "A"
+          "prompt": "Which word can also mean the evening meal?", "options": [{"key":"A","text":"supper"},{"key":"B","text":"snack"}], "answer": "A"
         }
       ]
     },
@@ -189,8 +185,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "If you need a drink, you are ____.\nA. thirsty\nB. sick",
-          "answer": "A"
+          "prompt": "If you need a drink, you are ____.", "options": [{"key":"A","text":"thirsty"},{"key":"B","text":"sick"}], "answer": "A"
         }
       ]
     },
@@ -216,8 +211,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which is fruit?\nA. an apple\nB. a bandage",
-          "answer": "A"
+          "prompt": "Which is fruit?", "options": [{"key":"A","text":"an apple"},{"key":"B","text":"a bandage"}], "answer": "A"
         }
       ]
     },
@@ -270,8 +264,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "If food tastes very good, it is ____.\nA. delicious\nB. dangerous",
-          "answer": "A"
+          "prompt": "If food tastes very good, it is ____.", "options": [{"key":"A","text":"delicious"},{"key":"B","text":"dangerous"}], "answer": "A"
         }
       ]
     },
@@ -297,8 +290,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "What can you put on pasta or meat?\nA. sauce\nB. bone",
-          "answer": "A"
+          "prompt": "What can you put on pasta or meat?", "options": [{"key":"A","text":"sauce"},{"key":"B","text":"bone"}], "answer": "A"
         }
       ]
     },
@@ -351,8 +343,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which food is usually made from beef?\nA. steak\nB. cheese",
-          "answer": "A"
+          "prompt": "Which food is usually made from beef?", "options": [{"key":"A","text":"steak"},{"key":"B","text":"cheese"}], "answer": "A"
         }
       ]
     },
@@ -405,8 +396,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which is a vegetable?\nA. a carrot\nB. a dessert",
-          "answer": "A"
+          "prompt": "Which is a vegetable?", "options": [{"key":"A","text":"a carrot"},{"key":"B","text":"a dessert"}], "answer": "A"
         }
       ]
     },
@@ -459,8 +449,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which food is made with eggs?\nA. omelette\nB. sauce",
-          "answer": "A"
+          "prompt": "Which food is made with eggs?", "options": [{"key":"A","text":"omelette"},{"key":"B","text":"sauce"}], "answer": "A"
         }
       ]
     },
@@ -513,8 +502,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which comes after soup in a meal?\nA. the main course\nB. the bandage",
-          "answer": "A"
+          "prompt": "Which comes after soup in a meal?", "options": [{"key":"A","text":"the main course"},{"key":"B","text":"the bandage"}], "answer": "A"
         }
       ]
     },
@@ -540,8 +528,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Burgers and chips are often called ____.\nA. fast food\nB. mineral water",
-          "answer": "A"
+          "prompt": "Burgers and chips are often called ____.", "options": [{"key":"A","text":"fast food"},{"key":"B","text":"mineral water"}], "answer": "A"
         }
       ]
     },
@@ -569,8 +556,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which word can also mean 'chips' in American English?\nA. French fries\nB. dessert",
-          "answer": "A"
+          "prompt": "Which word can also mean 'chips' in American English?", "options": [{"key":"A","text":"French fries"},{"key":"B","text":"dessert"}], "answer": "A"
         }
       ]
     },
@@ -623,8 +609,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "What do you use on a small cut?\nA. a bandage\nB. a dessert",
-          "answer": "A"
+          "prompt": "What do you use on a small cut?", "options": [{"key":"A","text":"a bandage"},{"key":"B","text":"a dessert"}], "answer": "A"
         }
       ]
     },
@@ -677,8 +662,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which part of the face is a cheek?\nA. the side of your face\nB. your foot",
-          "answer": "A"
+          "prompt": "Which part of the face is a cheek?", "options": [{"key":"A","text":"the side of your face"},{"key":"B","text":"your foot"}], "answer": "A"
         }
       ]
     },
@@ -704,8 +688,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which sentence uses 'smoke' as a noun?\nA. Smoke came out of the window.\nB. He smokes every day.",
-          "answer": "A"
+          "prompt": "Which sentence uses 'smoke' as a noun?", "options": [{"key":"A","text":"Smoke came out of the window."},{"key":"B","text":"He smokes every day."}], "answer": "A"
         }
       ]
     },
@@ -758,8 +741,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which part of the body helps you think?\nA. brain\nB. cheek",
-          "answer": "A"
+          "prompt": "Which part of the body helps you think?", "options": [{"key":"A","text":"brain"},{"key":"B","text":"cheek"}], "answer": "A"
         }
       ]
     },
@@ -812,8 +794,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which vehicle takes sick people to hospital?\nA. ambulance\nB. picnic",
-          "answer": "A"
+          "prompt": "Which vehicle takes sick people to hospital?", "options": [{"key":"A","text":"ambulance"},{"key":"B","text":"picnic"}], "answer": "A"
         }
       ]
     },
@@ -866,8 +847,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Only a few types of food will be ____ for student lunches next week.\nA. available\nB. served",
-          "answer": "B"
+          "prompt": "Only a few types of food will be ____ for student lunches next week.", "options": [{"key":"A","text":"available"},{"key":"B","text":"served"}], "answer": "B"
         }
       ]
     },
@@ -893,8 +873,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "It still ____ like a good film.\nA. sound\nB. sounds",
-          "answer": "B"
+          "prompt": "It still ____ like a good film.", "options": [{"key":"A","text":"sound"},{"key":"B","text":"sounds"}], "answer": "B"
         }
       ]
     },
@@ -947,8 +926,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "I don't eat pizza very often, because it is ____.\nA. very healthy\nB. not healthy",
-          "answer": "B"
+          "prompt": "I don't eat pizza very often, because it is ____.", "options": [{"key":"A","text":"very healthy"},{"key":"B","text":"not healthy"}], "answer": "B"
         }
       ]
     },
@@ -974,8 +952,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "How does Lily feel ____ inviting their mum's best friend?\nA. about\nB. at",
-          "answer": "A"
+          "prompt": "How does Lily feel ____ inviting their mum's best friend?", "options": [{"key":"A","text":"about"},{"key":"B","text":"at"}], "answer": "A"
         }
       ]
     },
@@ -1001,8 +978,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'Sick' here means ____.\nA. healthy\nB. not healthy",
-          "answer": "B"
+          "prompt": "'Sick' here means ____.", "options": [{"key":"A","text":"healthy"},{"key":"B","text":"not healthy"}], "answer": "B"
         }
       ]
     },
@@ -1055,8 +1031,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'Perhaps' here means ____.\nA. maybe\nB. definitely",
-          "answer": "A"
+          "prompt": "'Perhaps' here means ____.", "options": [{"key":"A","text":"maybe"},{"key":"B","text":"definitely"}], "answer": "A"
         }
       ]
     },
@@ -1082,8 +1057,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'Probably' is closest in meaning to ____.\nA. perhaps\nB. never",
-          "answer": "A"
+          "prompt": "'Probably' is closest in meaning to ____.", "options": [{"key":"A","text":"perhaps"},{"key":"B","text":"never"}], "answer": "A"
         }
       ]
     },
@@ -1109,8 +1083,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Put on your coat and don't catch a cold. Here 'cold' means ____.\nA. low temperature\nB. a disease",
-          "answer": "B"
+          "prompt": "Put on your coat and don't catch a cold. Here 'cold' means ____.", "options": [{"key":"A","text":"low temperature"},{"key":"B","text":"a disease"}], "answer": "B"
         }
       ]
     },
@@ -1136,8 +1109,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Passengers might ____ if the floor is wet.\nA. fall\nB. taste",
-          "answer": "A"
+          "prompt": "Passengers might ____ if the floor is wet.", "options": [{"key":"A","text":"fall"},{"key":"B","text":"taste"}], "answer": "A"
         }
       ]
     },
@@ -1163,8 +1135,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "She was ____ constant pain.\nA. in\nB. at",
-          "answer": "A"
+          "prompt": "She was ____ constant pain.", "options": [{"key":"A","text":"in"},{"key":"B","text":"at"}], "answer": "A"
         }
       ]
     },
@@ -1190,8 +1161,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Let me try and ____ a doctor's appointment for you.\nA. get\nB. catch",
-          "answer": "A"
+          "prompt": "Let me try and ____ a doctor's appointment for you.", "options": [{"key":"A","text":"get"},{"key":"B","text":"catch"}], "answer": "A"
         }
       ]
     },
@@ -1217,8 +1187,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "In 'It doesn't matter', the word means ____.\nA. it isn't important\nB. it is dangerous",
-          "answer": "A"
+          "prompt": "In 'It doesn't matter', the word means ____.", "options": [{"key":"A","text":"it isn't important"},{"key":"B","text":"it is dangerous"}], "answer": "A"
         }
       ]
     },
@@ -1244,8 +1213,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "The hot weather and strong winds are not a ____ for them.\nA. problem\nB. dessert",
-          "answer": "A"
+          "prompt": "The hot weather and strong winds are not a ____ for them.", "options": [{"key":"A","text":"problem"},{"key":"B","text":"dessert"}], "answer": "A"
         }
       ]
     },
@@ -1271,8 +1239,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Glenn sent a message to make sure she had taken her ____.\nA. medicine\nB. bandage",
-          "answer": "A"
+          "prompt": "Glenn sent a message to make sure she had taken her ____.", "options": [{"key":"A","text":"medicine"},{"key":"B","text":"bandage"}], "answer": "A"
         }
       ]
     },
@@ -1298,8 +1265,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'Accident' means something bad that happens that is ____.\nA. not expected\nB. expected",
-          "answer": "A"
+          "prompt": "'Accident' means something bad that happens that is ____.", "options": [{"key":"A","text":"not expected"},{"key":"B","text":"expected"}], "answer": "A"
         }
       ]
     },
@@ -1352,8 +1318,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'Dangerous' means ____.\nA. not safe\nB. very safe",
-          "answer": "A"
+          "prompt": "'Dangerous' means ____.", "options": [{"key":"A","text":"not safe"},{"key":"B","text":"very safe"}], "answer": "A"
         }
       ]
     },
@@ -1379,8 +1344,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'Die' means ____.\nA. to stop living\nB. to sleep",
-          "answer": "A"
+          "prompt": "'Die' means ____.", "options": [{"key":"A","text":"to stop living"},{"key":"B","text":"to sleep"}], "answer": "A"
         }
       ]
     },
@@ -1433,8 +1397,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "You taste with your ____.\nA. lips\nB. tongue",
-          "answer": "B"
+          "prompt": "You taste with your ____.", "options": [{"key":"A","text":"lips"},{"key":"B","text":"tongue"}], "answer": "B"
         }
       ]
     },
@@ -1460,8 +1423,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "In 'I need some exercise', the word means ____.\nA. sports\nB. classroom activities",
-          "answer": "A"
+          "prompt": "In 'I need some exercise', the word means ____.", "options": [{"key":"A","text":"sports"},{"key":"B","text":"classroom activities"}], "answer": "A"
         }
       ]
     },
@@ -1487,8 +1449,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "You can get a bus around the city, but we prefer to ____.\nA. walk\nB. die",
-          "answer": "A"
+          "prompt": "You can get a bus around the city, but we prefer to ____.", "options": [{"key":"A","text":"walk"},{"key":"B","text":"die"}], "answer": "A"
         }
       ]
     },
@@ -1541,8 +1502,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "What happens in the last pages doesn't seem real. Here 'seem' means ____.\nA. look\nB. check",
-          "answer": "A"
+          "prompt": "What happens in the last pages doesn't seem real. Here 'seem' means ____.", "options": [{"key":"A","text":"look"},{"key":"B","text":"check"}], "answer": "A"
         }
       ]
     },
@@ -1568,8 +1528,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'Look after' means ____.\nA. to take care of\nB. to look back",
-          "answer": "A"
+          "prompt": "'Look after' means ____.", "options": [{"key":"A","text":"to take care of"},{"key":"B","text":"to look back"}], "answer": "A"
         }
       ]
     },
@@ -1595,8 +1554,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "If you hurt your head, you may have ____.\nA. a headache\nB. a dessert",
-          "answer": "A"
+          "prompt": "If you hurt your head, you may have ____.", "options": [{"key":"A","text":"a headache"},{"key":"B","text":"a dessert"}], "answer": "A"
         }
       ]
     },
@@ -1622,8 +1580,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Rob's dad offered to ____ Rob's laptop.\nA. check\nB. hurt",
-          "answer": "A"
+          "prompt": "Rob's dad offered to ____ Rob's laptop.", "options": [{"key":"A","text":"check"},{"key":"B","text":"hurt"}], "answer": "A"
         }
       ]
     }

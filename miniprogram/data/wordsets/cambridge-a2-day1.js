@@ -52,8 +52,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which one do we pay monthly?\nA. electricity bill\nB. a block",
-          "answer": "A"
+          "prompt": "Which one do we pay monthly?", "options": [{"key":"A","text":"electricity bill"},{"key":"B","text":"a block"}], "answer": "A"
         }
       ]
     },
@@ -81,8 +80,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Where should we keep food cold?\nA. in the fridge\nB. in the oven",
-          "answer": "A"
+          "prompt": "Where should we keep food cold?", "options": [{"key":"A","text":"in the fridge"},{"key":"B","text":"in the oven"}], "answer": "A"
         }
       ]
     },
@@ -108,8 +106,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "What do we use for cooking at home?\nA. gas\nB. a drawer",
-          "answer": "A"
+          "prompt": "What do we use for cooking at home?", "options": [{"key":"A","text":"gas"},{"key":"B","text":"a drawer"}], "answer": "A"
         }
       ]
     },
@@ -135,8 +132,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which one is used for baking?\nA. oven\nB. fridge",
-          "answer": "A"
+          "prompt": "Which one is used for baking?", "options": [{"key":"A","text":"oven"},{"key":"B","text":"fridge"}], "answer": "A"
         }
       ]
     },
@@ -162,8 +158,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which is the fastest way to heat food?\nA. microwave\nB. oven",
-          "answer": "A"
+          "prompt": "Which is the fastest way to heat food?", "options": [{"key":"A","text":"microwave"},{"key":"B","text":"oven"}], "answer": "A"
         }
       ]
     },
@@ -189,8 +184,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Where does water go when you turn on the tap in a kitchen?\nA. down the sink\nB. into the oven",
-          "answer": "A"
+          "prompt": "Where does water go when you turn on the tap in a kitchen?", "options": [{"key":"A","text":"down the sink"},{"key":"B","text":"into the oven"}], "answer": "A"
         }
       ]
     },
@@ -216,8 +210,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which is furniture?\nA. a sofa\nB. a fridge",
-          "answer": "A"
+          "prompt": "Which is furniture?", "options": [{"key":"A","text":"a sofa"},{"key":"B","text":"a fridge"}], "answer": "A"
         }
       ]
     },
@@ -243,8 +236,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'Goods' means:\nA. things for sale\nB. things that are good",
-          "answer": "A"
+          "prompt": "'Goods' means:", "options": [{"key":"A","text":"things for sale"},{"key":"B","text":"things that are good"}], "answer": "A"
         }
       ]
     },
@@ -270,8 +262,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "We turn on the heating when it is _____.\nA. cold\nB. hot",
-          "answer": "A"
+          "prompt": "We turn on the heating when it is _____.", "options": [{"key":"A","text":"cold"},{"key":"B","text":"hot"}], "answer": "A"
         }
       ]
     },
@@ -297,8 +288,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "The ceiling is at the _____.\nA. top of a room\nB. bottom of a room",
-          "answer": "A"
+          "prompt": "The ceiling is at the _____.", "options": [{"key":"A","text":"top of a room"},{"key":"B","text":"bottom of a room"}], "answer": "A"
         }
       ]
     },
@@ -351,8 +341,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Rent is money you pay for _____.\nA. a place to live\nB. goods in a shop",
-          "answer": "A"
+          "prompt": "Rent is money you pay for _____.", "options": [{"key":"A","text":"a place to live"},{"key":"B","text":"goods in a shop"}], "answer": "A"
         }
       ]
     },
@@ -378,8 +367,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A garage is a place to keep _____.\nA. a car\nB. clothes",
-          "answer": "A"
+          "prompt": "A garage is a place to keep _____.", "options": [{"key":"A","text":"a car"},{"key":"B","text":"clothes"}], "answer": "A"
         }
       ]
     },
@@ -405,8 +393,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A drawer is part of _____.\nA. a desk\nB. a ceiling",
-          "answer": "A"
+          "prompt": "A drawer is part of _____.", "options": [{"key":"A","text":"a desk"},{"key":"B","text":"a ceiling"}], "answer": "A"
         }
       ]
     },
@@ -432,8 +419,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Where do you hang your clothes?\nA. in a wardrobe\nB. in a drawer",
-          "answer": "A"
+          "prompt": "Where do you hang your clothes?", "options": [{"key":"A","text":"in a wardrobe"},{"key":"B","text":"in a drawer"}], "answer": "A"
         }
       ]
     },
@@ -459,8 +445,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "An accessory is something that _____.\nA. goes with your clothes\nB. you eat",
-          "answer": "A"
+          "prompt": "An accessory is something that _____.", "options": [{"key":"A","text":"goes with your clothes"},{"key":"B","text":"you eat"}], "answer": "A"
         }
       ]
     },
@@ -488,8 +473,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which is jewellery?\nA. a ring\nB. a bag",
-          "answer": "A"
+          "prompt": "Which is jewellery?", "options": [{"key":"A","text":"a ring"},{"key":"B","text":"a bag"}], "answer": "A"
         }
       ]
     },
@@ -569,8 +553,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A discount means the price is _____.\nA. lower\nB. higher",
-          "answer": "A"
+          "prompt": "A discount means the price is _____.", "options": [{"key":"A","text":"lower"},{"key":"B","text":"higher"}], "answer": "A"
         }
       ]
     },
@@ -596,8 +579,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "You get a receipt when you _____.\nA. pay for something\nB. cook food",
-          "answer": "A"
+          "prompt": "You get a receipt when you _____.", "options": [{"key":"A","text":"pay for something"},{"key":"B","text":"cook food"}], "answer": "A"
         }
       ]
     },
@@ -623,8 +605,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A customer is a person who _____.\nA. buys something\nB. sells something",
-          "answer": "A"
+          "prompt": "A customer is a person who _____.", "options": [{"key":"A","text":"buys something"},{"key":"B","text":"sells something"}], "answer": "A"
         }
       ]
     },
@@ -650,8 +631,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Leather comes from _____.\nA. animals\nB. plants",
-          "answer": "A"
+          "prompt": "Leather comes from _____.", "options": [{"key":"A","text":"animals"},{"key":"B","text":"plants"}], "answer": "A"
         }
       ]
     },
@@ -733,8 +713,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "In British English, a 'lift' is the same as:\nA. an elevator\nB. an escalator",
-          "answer": "A"
+          "prompt": "In British English, a 'lift' is the same as:", "options": [{"key":"A","text":"an elevator"},{"key":"B","text":"an escalator"}], "answer": "A"
         }
       ]
     },
@@ -760,8 +739,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A washing machine is used for _____.\nA. cleaning clothes\nB. cooking food",
-          "answer": "A"
+          "prompt": "A washing machine is used for _____.", "options": [{"key":"A","text":"cleaning clothes"},{"key":"B","text":"cooking food"}], "answer": "A"
         }
       ]
     },
@@ -787,8 +765,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "We use an air conditioner when it is _____.\nA. hot\nB. cold",
-          "answer": "A"
+          "prompt": "We use an air conditioner when it is _____.", "options": [{"key":"A","text":"hot"},{"key":"B","text":"cold"}], "answer": "A"
         }
       ]
     },
@@ -814,8 +791,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A credit card is used to _____.\nA. pay for things\nB. wash clothes",
-          "answer": "A"
+          "prompt": "A credit card is used to _____.", "options": [{"key":"A","text":"pay for things"},{"key":"B","text":"wash clothes"}], "answer": "A"
         }
       ]
     },
@@ -843,8 +819,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "In American English, 'cell phone' is the same as:\nA. mobile phone\nB. landline",
-          "answer": "A"
+          "prompt": "In American English, 'cell phone' is the same as:", "options": [{"key":"A","text":"mobile phone"},{"key":"B","text":"landline"}], "answer": "A"
         }
       ]
     },
@@ -919,8 +894,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "What can be called a bill?\nA. The money you spend on electricity\nB. The money you get from parents",
-          "answer": "A"
+          "prompt": "What can be called a bill?", "options": [{"key":"A","text":"The money you spend on electricity"},{"key":"B","text":"The money you get from parents"}], "answer": "A"
         }
       ]
     },
@@ -941,8 +915,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'belong to' means:\nA. Someone has something.\nB. Someone buys something.",
-          "answer": "A"
+          "prompt": "'belong to' means:", "options": [{"key":"A","text":"Someone has something."},{"key":"B","text":"Someone buys something."}], "answer": "A"
         }
       ]
     },
@@ -963,8 +936,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which means 'put up'?\nA. to take down a picture\nB. to put a picture on the wall",
-          "answer": "B"
+          "prompt": "Which means 'put up'?", "options": [{"key":"A","text":"to take down a picture"},{"key":"B","text":"to put a picture on the wall"}], "answer": "B"
         }
       ]
     },
@@ -1007,8 +979,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'clean' here means:\nA. wash the pieces of silver\nB. not dirty",
-          "answer": "A"
+          "prompt": "'clean' here means:", "options": [{"key":"A","text":"wash the pieces of silver"},{"key":"B","text":"not dirty"}], "answer": "A"
         }
       ]
     },
@@ -1029,8 +1000,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which one has a tub?\nA. shower\nB. bath",
-          "answer": "B"
+          "prompt": "Which one has a tub?", "options": [{"key":"A","text":"shower"},{"key":"B","text":"bath"}], "answer": "B"
         }
       ]
     },
@@ -1056,8 +1026,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "I can help with the _____.\nA. washing-up\nB. wash up",
-          "answer": "A"
+          "prompt": "I can help with the _____.", "options": [{"key":"A","text":"washing-up"},{"key":"B","text":"wash up"}], "answer": "A"
         }
       ]
     },
@@ -1083,8 +1052,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "The weather is _____.\nA. warm enough\nB. enough warm",
-          "answer": "A"
+          "prompt": "The weather is _____.", "options": [{"key":"A","text":"warm enough"},{"key":"B","text":"enough warm"}], "answer": "A"
         }
       ]
     },
@@ -1105,8 +1073,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "What is Suzy doing?\nA. asking Henry if she can bring an extra person to the restaurant tonight.",
-          "answer": "A"
+          "prompt": "What is Suzy doing?", "options": [{"key":"A","text":"asking Henry if she can bring an extra person to the restaurant tonight."}], "answer": "A"
         }
       ]
     },
@@ -1127,8 +1094,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which means 'get dressed'?\nA. dress up\nB. put on clothes",
-          "answer": "B"
+          "prompt": "Which means 'get dressed'?", "options": [{"key":"A","text":"dress up"},{"key":"B","text":"put on clothes"}], "answer": "B"
         }
       ]
     },
@@ -1154,8 +1120,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which is correct?\nA. People who have swimming classes can go on Tuesday.\nB. The pool will be closed to all customers after Tuesday.\nC. Swimming lessons will be in a new pool on Tuesday.",
-          "answer": "A"
+          "prompt": "Which is correct?", "options": [{"key":"A","text":"People who have swimming classes can go on Tuesday."},{"key":"B","text":"The pool will be closed to all customers after Tuesday."},{"key":"C","text":"Swimming lessons will be in a new pool on Tuesday."}], "answer": "A"
         }
       ]
     },
@@ -1176,8 +1141,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Lily buys various clothes, which are possibly _____.\nA. many dresses\nB. dresses, shirts and trousers",
-          "answer": "B"
+          "prompt": "Lily buys various clothes, which are possibly _____.", "options": [{"key":"A","text":"many dresses"},{"key":"B","text":"dresses, shirts and trousers"}], "answer": "B"
         }
       ]
     },
@@ -1220,8 +1184,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "What does the advert say?\nA. The bike has a few things wrong with it.\nB. Call Kevin to find out how much the bike costs.\nC. You can use the bike in different kinds of places.",
-          "answer": "B"
+          "prompt": "What does the advert say?", "options": [{"key":"A","text":"The bike has a few things wrong with it."},{"key":"B","text":"Call Kevin to find out how much the bike costs."},{"key":"C","text":"You can use the bike in different kinds of places."}], "answer": "B"
         }
       ]
     },
@@ -1242,8 +1205,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Where do you live?\nA. I live in Beijing.\nB. I live for 10 years.",
-          "answer": "A"
+          "prompt": "Where do you live?", "options": [{"key":"A","text":"I live in Beijing."},{"key":"B","text":"I live for 10 years."}], "answer": "A"
         }
       ]
     },
@@ -1264,8 +1226,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "I live _____.\nA. upstairs\nB. in downstairs.",
-          "answer": "A"
+          "prompt": "I live _____.", "options": [{"key":"A","text":"upstairs"},{"key":"B","text":"in downstairs."}], "answer": "A"
         }
       ]
     },
@@ -1342,8 +1303,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which is correct about 'charge'?\nA. I need to charge my phone.\nB. I need to clean my phone charge.",
-          "answer": "A"
+          "prompt": "Which is correct about 'charge'?", "options": [{"key":"A","text":"I need to charge my phone."},{"key":"B","text":"I need to clean my phone charge."}], "answer": "A"
         }
       ]
     },
@@ -1386,8 +1346,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'ring' here means:\nA. call\nB. circle",
-          "answer": "A"
+          "prompt": "'ring' here means:", "options": [{"key":"A","text":"call"},{"key":"B","text":"circle"}], "answer": "A"
         }
       ]
     },
@@ -1408,8 +1367,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which can be called a building?\nA. ceiling\nB. lift\nC. castle",
-          "answer": "C"
+          "prompt": "Which can be called a building?", "options": [{"key":"A","text":"ceiling"},{"key":"B","text":"lift"},{"key":"C","text":"castle"}], "answer": "C"
         }
       ]
     },
@@ -1435,8 +1393,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which can be a bright color?\nA. brown\nB. orange",
-          "answer": "B"
+          "prompt": "Which can be a bright color?", "options": [{"key":"A","text":"brown"},{"key":"B","text":"orange"}], "answer": "B"
         }
       ]
     },
@@ -1462,8 +1419,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A light can make your room _____.\nA. bright\nB. dark",
-          "answer": "A"
+          "prompt": "A light can make your room _____.", "options": [{"key":"A","text":"bright"},{"key":"B","text":"dark"}], "answer": "A"
         }
       ]
     },
@@ -1489,8 +1445,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "An Outlet (奥特莱斯商场) is more likely to offer _____.\nA. expensive goods\nB. goods with discounts",
-          "answer": "B"
+          "prompt": "An Outlet (奥特莱斯商场) is more likely to offer _____.", "options": [{"key":"A","text":"expensive goods"},{"key":"B","text":"goods with discounts"}], "answer": "B"
         }
       ]
     },
@@ -1533,8 +1488,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Choose can be paraphrased by _____.\nA. pick\nB. chase",
-          "answer": "A"
+          "prompt": "Choose can be paraphrased by _____.", "options": [{"key":"A","text":"pick"},{"key":"B","text":"chase"}], "answer": "A"
         }
       ]
     },
@@ -1560,8 +1514,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Please try hard ____ the project.\nA. to complete\nB. complete",
-          "answer": "A"
+          "prompt": "Please try hard ____ the project.", "options": [{"key":"A","text":"to complete"},{"key":"B","text":"complete"}], "answer": "A"
         }
       ]
     }

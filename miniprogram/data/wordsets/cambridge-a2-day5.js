@@ -54,8 +54,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which vehicle runs on rails?\nA. train\nB. scooter",
-          "answer": "A"
+          "prompt": "Which vehicle runs on rails?", "options": [{"key":"A","text":"train"},{"key":"B","text":"scooter"}], "answer": "A"
         }
       ]
     },
@@ -110,8 +109,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which is a small motor vehicle?\nA. scooter\nB. platform",
-          "answer": "A"
+          "prompt": "Which is a small motor vehicle?", "options": [{"key":"A","text":"scooter"},{"key":"B","text":"platform"}], "answer": "A"
         }
       ]
     },
@@ -164,8 +162,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which vehicle can you hire for a short trip?\nA. taxi\nB. helicopter",
-          "answer": "A"
+          "prompt": "Which vehicle can you hire for a short trip?", "options": [{"key":"A","text":"taxi"},{"key":"B","text":"helicopter"}], "answer": "A"
         }
       ]
     },
@@ -218,8 +215,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which aircraft has rotating blades?\nA. helicopter\nB. train",
-          "answer": "A"
+          "prompt": "Which aircraft has rotating blades?", "options": [{"key":"A","text":"helicopter"},{"key":"B","text":"train"}], "answer": "A"
         }
       ]
     },
@@ -272,8 +268,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which vehicle travels on the sea?\nA. ship\nB. platform",
-          "answer": "A"
+          "prompt": "Which vehicle travels on the sea?", "options": [{"key":"A","text":"ship"},{"key":"B","text":"platform"}], "answer": "A"
         }
       ]
     },
@@ -326,8 +321,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which thing do you use to carry clothes on a trip?\nA. suitcase\nB. map",
-          "answer": "A"
+          "prompt": "Which thing do you use to carry clothes on a trip?", "options": [{"key":"A","text":"suitcase"},{"key":"B","text":"map"}], "answer": "A"
         }
       ]
     },
@@ -380,8 +374,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A person visiting a place on holiday is a ____.\nA. tourist\nB. passenger",
-          "answer": "A"
+          "prompt": "A person visiting a place on holiday is a ____.", "options": [{"key":"A","text":"tourist"},{"key":"B","text":"passenger"}], "answer": "A"
         }
       ]
     },
@@ -434,8 +427,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "What do you sit on in a bus or train?\nA. a seat\nB. a suitcase",
-          "answer": "A"
+          "prompt": "What do you sit on in a bus or train?", "options": [{"key":"A","text":"a seat"},{"key":"B","text":"a suitcase"}], "answer": "A"
         }
       ]
     },
@@ -488,8 +480,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Cars, buses and bikes on the road are called ____.\nA. traffic\nB. luggage",
-          "answer": "A"
+          "prompt": "Cars, buses and bikes on the road are called ____.", "options": [{"key":"A","text":"traffic"},{"key":"B","text":"luggage"}], "answer": "A"
         }
       ]
     },
@@ -542,8 +533,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Your nationality tells people which country you are ____.\nA. from\nB. carrying",
-          "answer": "A"
+          "prompt": "Your nationality tells people which country you are ____.", "options": [{"key":"A","text":"from"},{"key":"B","text":"carrying"}], "answer": "A"
         }
       ]
     },
@@ -596,8 +586,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Thailand is a ____.\nA. country\nB. station",
-          "answer": "A"
+          "prompt": "Thailand is a ____.", "options": [{"key":"A","text":"country"},{"key":"B","text":"station"}], "answer": "A"
         }
       ]
     },
@@ -650,8 +639,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "London is in ____.\nA. Britain\nB. Brazil",
-          "answer": "A"
+          "prompt": "London is in ____.", "options": [{"key":"A","text":"Britain"},{"key":"B","text":"Brazil"}], "answer": "A"
         }
       ]
     },
@@ -704,8 +692,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Mexico is a ____.\nA. country\nB. language",
-          "answer": "A"
+          "prompt": "Mexico is a ____.", "options": [{"key":"A","text":"country"},{"key":"B","text":"language"}], "answer": "A"
         }
       ]
     },
@@ -758,8 +745,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Tokyo is in ____.\nA. Japan\nB. Thailand",
-          "answer": "A"
+          "prompt": "Tokyo is in ____.", "options": [{"key":"A","text":"Japan"},{"key":"B","text":"Thailand"}], "answer": "A"
         }
       ]
     },
@@ -812,8 +798,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Africa is a ____.\nA. continent\nB. station",
-          "answer": "A"
+          "prompt": "Africa is a ____.", "options": [{"key":"A","text":"continent"},{"key":"B","text":"station"}], "answer": "A"
         }
       ]
     },
@@ -839,8 +824,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which sentence is correct?\nA. I often travel to another city by car.\nB. I often travel another city by car.",
-          "answer": "A"
+          "prompt": "Which sentence is correct?", "options": [{"key":"A","text":"I often travel to another city by car."},{"key":"B","text":"I often travel another city by car."}], "answer": "A"
         }
       ]
     },
@@ -893,8 +877,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which word is often used for a long trip?\nA. journey\nB. seat",
-          "answer": "A"
+          "prompt": "Which word is often used for a long trip?", "options": [{"key":"A","text":"journey"},{"key":"B","text":"seat"}], "answer": "A"
         }
       ]
     },
@@ -920,8 +903,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Each sightseeing ____ takes 2 hours.\nA. trip\nB. luggage",
-          "answer": "A"
+          "prompt": "Each sightseeing ____ takes 2 hours.", "options": [{"key":"A","text":"trip"},{"key":"B","text":"luggage"}], "answer": "A"
         }
       ]
     },
@@ -974,8 +956,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'Carry' means ____.\nA. to take\nB. to give",
-          "answer": "A"
+          "prompt": "'Carry' means ____.", "options": [{"key":"A","text":"to take"},{"key":"B","text":"to give"}], "answer": "A"
         }
       ]
     },
@@ -1028,8 +1009,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which sentence is correct?\nA. I moved to Spain last year.\nB. I moved Spain last year.",
-          "answer": "A"
+          "prompt": "Which sentence is correct?", "options": [{"key":"A","text":"I moved to Spain last year."},{"key":"B","text":"I moved Spain last year."}], "answer": "A"
         }
       ]
     },
@@ -1136,8 +1116,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "In 'I missed the train', 'miss' means ____.\nA. was too late for\nB. wanted to see",
-          "answer": "A"
+          "prompt": "In 'I missed the train', 'miss' means ____.", "options": [{"key":"A","text":"was too late for"},{"key":"B","text":"wanted to see"}], "answer": "A"
         }
       ]
     },
@@ -1190,8 +1169,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'Delay' means ____.\nA. being late\nB. being bad",
-          "answer": "A"
+          "prompt": "'Delay' means ____.", "options": [{"key":"A","text":"being late"},{"key":"B","text":"being bad"}], "answer": "A"
         }
       ]
     },
@@ -1217,8 +1195,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "If you want to bring something back to a shop, you want to ____ it.\nA. return\nB. repair",
-          "answer": "A"
+          "prompt": "If you want to bring something back to a shop, you want to ____ it.", "options": [{"key":"A","text":"return"},{"key":"B","text":"repair"}], "answer": "A"
         }
       ]
     },
@@ -1271,8 +1248,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'Hurry' means ____.\nA. be faster\nB. take your time",
-          "answer": "A"
+          "prompt": "'Hurry' means ____.", "options": [{"key":"A","text":"be faster"},{"key":"B","text":"take your time"}], "answer": "A"
         }
       ]
     },
@@ -1298,8 +1274,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "They became famous almost ____.\nA. immediately\nB. exactly",
-          "answer": "A"
+          "prompt": "They became famous almost ____.", "options": [{"key":"A","text":"immediately"},{"key":"B","text":"exactly"}], "answer": "A"
         }
       ]
     },
@@ -1325,8 +1300,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'Near' means ____.\nA. close\nB. far away",
-          "answer": "A"
+          "prompt": "'Near' means ____.", "options": [{"key":"A","text":"close"},{"key":"B","text":"far away"}], "answer": "A"
         }
       ]
     },
@@ -1406,8 +1380,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'Opposite' means ____.\nA. the other side\nB. the right side",
-          "answer": "A"
+          "prompt": "'Opposite' means ____.", "options": [{"key":"A","text":"the other side"},{"key":"B","text":"the right side"}], "answer": "A"
         }
       ]
     },
@@ -1460,8 +1433,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "If something is broken, you may need to ____ it.\nA. repair\nB. miss",
-          "answer": "A"
+          "prompt": "If something is broken, you may need to ____ it.", "options": [{"key":"A","text":"repair"},{"key":"B","text":"miss"}], "answer": "A"
         }
       ]
     },
@@ -1487,8 +1459,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'By air' means ____.\nA. taking the plane\nB. breathing",
-          "answer": "A"
+          "prompt": "'By air' means ____.", "options": [{"key":"A","text":"taking the plane"},{"key":"B","text":"breathing"}], "answer": "A"
         }
       ]
     },
@@ -1514,8 +1485,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'On foot' means ____.\nA. walking\nB. taking a bus",
-          "answer": "A"
+          "prompt": "'On foot' means ____.", "options": [{"key":"A","text":"walking"},{"key":"B","text":"taking a bus"}], "answer": "A"
         }
       ]
     },
@@ -1568,8 +1538,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'Look for' means ____.\nA. to try to find\nB. to look at",
-          "answer": "A"
+          "prompt": "'Look for' means ____.", "options": [{"key":"A","text":"to try to find"},{"key":"B","text":"to look at"}], "answer": "A"
         }
       ]
     }

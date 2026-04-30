@@ -1,67 +1,19 @@
 // pages/quiz/index.js
-const cambridgeA2Day1 = require('../../data/wordsets/cambridge-a2-day1');
-const cambridgeA2Day2 = require('../../data/wordsets/cambridge-a2-day2');
-const cambridgeA2Day3 = require('../../data/wordsets/cambridge-a2-day3');
-const cambridgeA2Day4 = require('../../data/wordsets/cambridge-a2-day4');
-const cambridgeA2Day5 = require('../../data/wordsets/cambridge-a2-day5');
-const cambridgeA2Day6 = require('../../data/wordsets/cambridge-a2-day6');
-const cambridgeA2Day7 = require('../../data/wordsets/cambridge-a2-day7');
-const cambridgeA2Day8 = require('../../data/wordsets/cambridge-a2-day8');
-const cambridgeA2Day9 = require('../../data/wordsets/cambridge-a2-day9');
-const cambridgeA2Day10 = require('../../data/wordsets/cambridge-a2-day10');
+const wordsetRegistry = require('../../data/wordsets/index');
 const phonetics = require('../../data/phonetics');
+const mastery = require('../../utils/mastery');
 
-const WORD_SETS = {
-  'cambridge-a2-day1': cambridgeA2Day1,
-  'cambridge-a2-day2': cambridgeA2Day2,
-  'cambridge-a2-day3': cambridgeA2Day3,
-  'cambridge-a2-day4': cambridgeA2Day4,
-  'cambridge-a2-day5': cambridgeA2Day5,
-  'cambridge-a2-day6': cambridgeA2Day6,
-  'cambridge-a2-day7': cambridgeA2Day7,
-  'cambridge-a2-day8': cambridgeA2Day8,
-  'cambridge-a2-day9': cambridgeA2Day9,
-  'cambridge-a2-day10': cambridgeA2Day10,
-};
-
-function parseChoiceQuestion(rawQuestion = '') {
-  const lines = rawQuestion
-    .split('\n')
-    .map(line => line.trim())
-    .filter(Boolean);
-  const optionPattern = /^([A-Z])\.\s*(.+)$/;
-  const firstOptionIndex = lines.findIndex(line => optionPattern.test(line));
-  const promptLines = firstOptionIndex === -1 ? lines : lines.slice(0, firstOptionIndex);
-  const optionLines = firstOptionIndex === -1 ? [] : lines.slice(firstOptionIndex);
-  const options = optionLines
-    .map((line) => {
-      const match = line.match(optionPattern);
-      if (!match) return null;
-      return {
-        key: match[1],
-        text: match[2],
-      };
-    })
-    .filter(Boolean);
-
-  return {
-    prompt: promptLines.join('\n'),
-    options,
-  };
-}
+const ROUND_SIZE = 10;
 
 Page({
   data: {
     wordSetTitle: '',
-    currentIndex: 0,
-    totalWords: 0,
     currentWord: null,
     mode: 'study',
     showExamples: true,
     showExercise: false,
     selectedAnswer: '',
     exerciseRevealed: false,
-    progressPercent: 0,
     currentExercise: null,
     choiceOptions: [],
     answered: false,
@@ -69,12 +21,21 @@ Page({
     feedbackText: '',
     nextButtonText: '下一个',
     currentExerciseAnswerDisplay: '',
-    correctCount: 0,
-    wrongCount: 0,
-    streakCount: 0,
     fillInput: '',
     showPoster: false,
     streakDaysForPoster: 0,
+
+    // 本轮相关
+    roundPhase: 'study',
+    roundWords: [],
+    roundIndex: 0,
+    roundTotal: 0,
+    roundWrongPool: [],
+    roundCorrectCount: 0,
+    roundWrongCount: 0,
+    roundStreakMax: 0,
+    roundStreakCurrent: 0,
+    roundWrongWords: [],
   },
 
   onLoad() {
@@ -83,8 +44,9 @@ Page({
       wx.reLaunch({ url: '/pages/home/index' });
       return;
     }
-    this.loadWordSet(setId);
+    this._setId = setId;
     this._initTodayLog(setId);
+    this.loadWordSet(setId);
   },
 
   onShow() {
@@ -104,12 +66,13 @@ Page({
   },
 
   _initTodayLog(setId) {
-    const today = this._getToday();
+    const today = mastery.getToday();
     const logs = wx.getStorageSync('study_log') || {};
     if (!logs[today] || !logs[today].wordIndices) {
       logs[today] = { setId, wordIndices: [], duration: 0 };
       wx.setStorageSync('study_log', logs);
     }
+    mastery.initTodayDailyLog(setId);
   },
 
   _pauseTimer() {
@@ -123,6 +86,7 @@ Page({
       logs[today].duration = (logs[today].duration || 0) + elapsed;
       wx.setStorageSync('study_log', logs);
     }
+    mastery.addDailyDuration(elapsed);
     this._wordTimerStart = null;
   },
 
@@ -136,57 +100,126 @@ Page({
       todayLog.wordIndices.push(wordIndex);
     }
     wx.setStorageSync('study_log', logs);
+    mastery.addDailyWordIndex(wordIndex);
   },
 
   loadWordSet(setId) {
-    const wordSet = WORD_SETS[setId];
+    const wordSet = wordsetRegistry.getWordSetById(setId);
     if (!wordSet) {
       wx.reLaunch({ url: '/pages/home/index' });
       return;
     }
 
-    const totalWords = wordSet.words.length;
+    const allWords = wordSet.words;
+    this._allWords = allWords;
+    this._setId = setId;
+
     const progressKey = `progress_${setId}`;
     const savedIndex = wx.getStorageSync(progressKey) || 0;
-    const currentIndex = Math.min(savedIndex, totalWords - 1);
-    const currentWord = wordSet.words[currentIndex];
-    this._setCurrentWordState({
-      wordSetTitle: wordSet.title,
-      currentIndex,
-      totalWords,
-      currentWord,
+    this._savedProgress = savedIndex;
+
+    const start = Math.min(savedIndex, allWords.length);
+    const remaining = allWords.length - start;
+    const roundTotal = Math.min(ROUND_SIZE, remaining);
+
+    if (roundTotal <= 0) {
+      this._startNewRound(0, allWords);
+      return;
+    }
+
+    this._startNewRound(start, allWords);
+  },
+
+  _startNewRound(startIndex, allWords) {
+    const roundTotal = Math.min(ROUND_SIZE, allWords.length - startIndex);
+    const roundWords = allWords.slice(startIndex, startIndex + roundTotal);
+
+    this._addWordToLog(startIndex);
+    this._hasReviewed = false;
+
+    this.setData({
+      wordSetTitle: wordsetRegistry.getWordSetById(this._setId).title,
+      roundPhase: 'study',
+      roundWords,
+      roundIndex: 0,
+      roundTotal,
+      roundWrongPool: [],
+      roundCorrectCount: 0,
+      roundWrongCount: 0,
+      roundStreakMax: 0,
+      roundStreakCurrent: 0,
+      roundWrongWords: [],
+      answered: false,
+      isCorrect: false,
+      feedbackText: '',
+      fillInput: '',
+      showExamples: true,
+      showExercise: false,
+      exerciseRevealed: false,
+    });
+
+    this._showRoundWord(0);
+  },
+
+  _showRoundWord(index) {
+    const { roundWords, mode } = this.data;
+    if (index >= roundWords.length) return;
+
+    const currentWord = roundWords[index];
+    const exerciseState = this._buildExerciseState(currentWord);
+    const hasExercise = currentWord && currentWord.exercises && currentWord.exercises.length > 0;
+    const isTestMode = mode === 'test';
+
+    const wordWithPhonetic = currentWord ? {
+      ...currentWord,
+      phonetic: phonetics[currentWord.word] || '',
+    } : null;
+
+    this.setData({
+      currentWord: wordWithPhonetic,
+      currentExercise: exerciseState.currentExercise,
+      currentExerciseAnswerDisplay: exerciseState.currentExerciseAnswerDisplay,
+      choiceOptions: exerciseState.choiceOptions,
+      roundIndex: index,
+      showExamples: !isTestMode,
+      showExercise: hasExercise,
+      selectedAnswer: '',
+      answered: false,
+      isCorrect: false,
+      feedbackText: '',
+      exerciseRevealed: false,
+      fillInput: '',
+      nextButtonText: isTestMode && exerciseState.currentExercise
+        ? '先答题'
+        : (hasExercise ? '揭晓答案' : '下一个'),
     });
   },
 
   prevWord() {
-    const { currentIndex, totalWords } = this.data;
-    if (currentIndex <= 0) return;
+    const { roundIndex, roundPhase } = this.data;
+    if (roundPhase === 'done') return;
+    if (roundIndex <= 0) return;
 
-    // 暂停计时 → 累加 → 重新开始
     this._pauseTimer();
     this._wordTimerStart = Date.now();
 
-    const newIndex = currentIndex - 1;
-    const setId = wx.getStorageSync('currentWordSetId');
-    const currentWord = WORD_SETS[setId].words[newIndex];
-    this._setCurrentWordState({
-      currentIndex: newIndex,
-      totalWords,
-      currentWord,
-    });
-    wx.setStorageSync(`progress_${setId}`, newIndex);
+    this._showRoundWord(roundIndex - 1);
+    wx.pageScrollTo({ scrollTop: 0, duration: 0 });
   },
 
   nextWord() {
     const {
       answered,
       currentExercise,
-      currentIndex,
-      totalWords,
+      roundIndex,
+      roundTotal,
       exerciseRevealed,
       mode,
       showExercise,
+      roundPhase,
     } = this.data;
+
+    if (roundPhase === 'done') return;
 
     if (mode === 'test' && currentExercise && currentExercise.type === 'choice' && !answered) {
       wx.showToast({ title: '先完成作答', icon: 'none' });
@@ -201,25 +234,165 @@ Page({
       return;
     }
 
-    if (currentIndex >= totalWords - 1) return;
+    if (roundIndex >= roundTotal - 1) {
+      this._onRoundFinish();
+      return;
+    }
 
-    // 暂停计时 → 累加 → 重新开始
     this._pauseTimer();
     this._wordTimerStart = Date.now();
 
-    const newIndex = currentIndex + 1;
-    const setId = wx.getStorageSync('currentWordSetId');
-    const currentWord = WORD_SETS[setId].words[newIndex];
+    this._showRoundWord(roundIndex + 1);
+    wx.pageScrollTo({ scrollTop: 0, duration: 0 });
+  },
 
-    // 记录已学单词
-    this._addWordToLog(newIndex);
+  _onRoundFinish() {
+    const { mode, roundWrongPool, roundWords } = this.data;
 
-    this._setCurrentWordState({
-      currentIndex: newIndex,
-      totalWords,
-      currentWord,
+    const startOffset = this._savedProgress;
+    const newProgress = startOffset + roundWords.length;
+    if (newProgress <= this._allWords.length) {
+      wx.setStorageSync(`progress_${this._setId}`, Math.min(newProgress, this._allWords.length - 1));
+      this._savedProgress = Math.min(newProgress, this._allWords.length - 1);
+    }
+
+    if (mode === 'study') {
+      this._startTestRound();
+      return;
+    }
+
+    if (roundWrongPool.length === 0) {
+      this._showSummary();
+      return;
+    }
+
+    if (this._hasReviewed) {
+      this._showSummary();
+      return;
+    }
+
+    this._hasReviewed = true;
+    this._startReviewRound();
+  },
+
+  _startTestRound() {
+    const roundWords = this.data.roundWords;
+
+    this.setData({
+      mode: 'test',
+      roundPhase: 'study',
+      roundIndex: 0,
+      roundWrongPool: [],
+      roundCorrectCount: 0,
+      roundWrongCount: 0,
+      roundStreakMax: 0,
+      roundStreakCurrent: 0,
+      roundWrongWords: [],
+      answered: false,
+      isCorrect: false,
+      feedbackText: '',
+      fillInput: '',
     });
-    wx.setStorageSync(`progress_${setId}`, newIndex);
+
+    this._showRoundWord(0);
+    wx.pageScrollTo({ scrollTop: 0, duration: 0 });
+  },
+
+  _startReviewRound() {
+    const { roundWrongPool, roundWords } = this.data;
+    const reviewWords = roundWords.filter(w => roundWrongPool.includes(w.id));
+
+    this._studyPhaseStats = {
+      correctCount: this.data.roundCorrectCount,
+      wrongCount: this.data.roundWrongCount,
+      streakMax: this.data.roundStreakMax,
+      wordsLearned: this.data.roundTotal,
+      wrongWords: [...(this.data.roundWrongWords || [])],
+    };
+
+    this.setData({
+      roundPhase: 'review',
+      roundWords: reviewWords,
+      roundIndex: 0,
+      roundTotal: reviewWords.length,
+      roundWrongPool: [],
+      roundCorrectCount: 0,
+      roundWrongCount: 0,
+      roundStreakMax: 0,
+      roundStreakCurrent: 0,
+      answered: false,
+      isCorrect: false,
+      feedbackText: '',
+      fillInput: '',
+    });
+
+    this._showRoundWord(0);
+    wx.pageScrollTo({ scrollTop: 0, duration: 0 });
+  },
+
+  _showSummary() {
+    this._pauseTimer();
+
+    let totalCorrect = this.data.roundCorrectCount;
+    let totalWrong = this.data.roundWrongCount;
+    let totalStreakMax = this.data.roundStreakMax;
+    let wordsLearned = this.data.roundTotal;
+    let allWrongWords = [...(this.data.roundWrongWords || [])];
+
+    if (this._studyPhaseStats) {
+      totalCorrect += this._studyPhaseStats.correctCount;
+      totalWrong += this._studyPhaseStats.wrongCount;
+      totalStreakMax = Math.max(totalStreakMax, this._studyPhaseStats.streakMax);
+      wordsLearned = this._studyPhaseStats.wordsLearned;
+      const existIds = new Set(allWrongWords.map(w => w.id));
+      this._studyPhaseStats.wrongWords.forEach(w => {
+        if (!existIds.has(w.id)) {
+          allWrongWords.push(w);
+          existIds.add(w.id);
+        }
+      });
+    }
+
+    const totalAnswered = totalCorrect + totalWrong;
+    const accuracy = totalAnswered > 0 ? Math.round(totalCorrect / totalAnswered * 100) : 0;
+
+    let encourageText = '继续加油！';
+    if (accuracy === 100) {
+      encourageText = '太棒了，全对！';
+    } else if (accuracy >= 80) {
+      encourageText = '表现不错，继续保持！';
+    } else if (accuracy >= 60) {
+      encourageText = '还不错，再接再厉！';
+    }
+
+    const wrongWordsForDisplay = allWrongWords.slice(0, 5).map(w => ({
+      word: w.word,
+      meaning: w.meaning,
+    }));
+
+    this.setData({
+      roundPhase: 'done',
+      summaryAccuracy: accuracy,
+      summaryCorrect: totalCorrect,
+      summaryWrong: totalWrong,
+      summaryStreakMax: totalStreakMax,
+      summaryWordsLearned: wordsLearned,
+      summaryWrongWords: wrongWordsForDisplay,
+      summaryEncourage: encourageText,
+    });
+
+    wx.pageScrollTo({ scrollTop: 0, duration: 0 });
+  },
+
+  onNextRound() {
+    const progress = this._savedProgress;
+    const allWords = this._allWords;
+
+    if (progress >= allWords.length - 1) {
+      this._startNewRound(0, allWords);
+    } else {
+      this._startNewRound(progress + 1, allWords);
+    }
     wx.pageScrollTo({ scrollTop: 0, duration: 0 });
   },
 
@@ -227,13 +400,21 @@ Page({
     const { mode } = e.currentTarget.dataset;
     if (!mode || mode === this.data.mode) return;
 
-    this.setData({ mode }, () => {
-      const { currentWord, currentIndex, totalWords } = this.data;
-      this._setCurrentWordState({
-        currentIndex,
-        totalWords,
-        currentWord,
+    if (this.data.roundPhase === 'done') {
+      this.setData({ mode }, () => {
+        const progress = this._savedProgress;
+        const allWords = this._allWords;
+        if (progress >= allWords.length - 1) {
+          this._startNewRound(0, allWords);
+        } else {
+          this._startNewRound(progress, allWords);
+        }
       });
+      return;
+    }
+
+    this.setData({ mode }, () => {
+      this._showRoundWord(this.data.roundIndex);
     });
   },
 
@@ -271,8 +452,9 @@ Page({
 
   _isChoiceCorrect(selectedKey, answer) {
     if (!answer) return false;
+    // 新格式: answer 是 "A"/"B" 等选项 key，直接比较
     if (selectedKey === answer) return true;
-
+    // 兼容旧格式: answer 可能是选项文本
     const selectedOption = this.data.choiceOptions.find(item => item.key === selectedKey);
     return !!selectedOption && selectedOption.text === answer;
   },
@@ -311,7 +493,6 @@ Page({
 
     if (acceptedList.includes(input)) return true;
 
-    // 检查 alternatives
     if (word && word.alternatives && word.alternatives.length > 0) {
       if (word.alternatives.some(alt => alt.trim().toLowerCase() === input)) return true;
     }
@@ -321,17 +502,51 @@ Page({
 
   _recordAnswerResult(extraState) {
     const isCorrect = !!extraState.isCorrect;
-    const nextCorrectCount = this.data.correctCount + (isCorrect ? 1 : 0);
-    const nextWrongCount = this.data.wrongCount + (isCorrect ? 0 : 1);
-    const nextStreakCount = isCorrect ? this.data.streakCount + 1 : 0;
+    const { mode } = this.data;
 
-    this.setData({
+    const setId = this._setId;
+    const currentWord = this.data.currentWord;
+    if (setId && currentWord) {
+      mastery.recordAnswer(setId, currentWord, isCorrect);
+      mastery.recordDailyAnswer(isCorrect);
+    }
+
+    const updateObj = {
       ...extraState,
       nextButtonText: '下一个',
-      correctCount: nextCorrectCount,
-      wrongCount: nextWrongCount,
-      streakCount: nextStreakCount,
-    });
+    };
+
+    if (mode === 'test') {
+      const newCorrect = this.data.roundCorrectCount + (isCorrect ? 1 : 0);
+      const newWrong = this.data.roundWrongCount + (isCorrect ? 0 : 1);
+      const newStreak = isCorrect ? (this.data.roundStreakCurrent || 0) + 1 : 0;
+      const newStreakMax = Math.max(this.data.roundStreakMax, newStreak);
+
+      updateObj.roundCorrectCount = newCorrect;
+      updateObj.roundWrongCount = newWrong;
+      updateObj.roundStreakCurrent = newStreak;
+      updateObj.roundStreakMax = newStreakMax;
+
+      if (!isCorrect && currentWord) {
+        const pool = this.data.roundWrongPool;
+        if (!pool.includes(currentWord.id)) {
+          pool.push(currentWord.id);
+          updateObj.roundWrongPool = pool;
+        }
+
+        const wrongWords = this.data.roundWrongWords || [];
+        if (!wrongWords.find(w => w.id === currentWord.id)) {
+          wrongWords.push({
+            id: currentWord.id,
+            word: currentWord.word,
+            meaning: currentWord.meaning,
+          });
+          updateObj.roundWrongWords = wrongWords;
+        }
+      }
+    }
+
+    this.setData(updateObj);
   },
 
   _buildExerciseState(word) {
@@ -343,7 +558,6 @@ Page({
       };
     }
 
-    // 自测模式优先选 choice 题，学习模式取第一题
     let exercise;
     if (this.data.mode === 'test') {
       exercise = word.exercises.find(e => e.type === 'choice') || word.exercises[0];
@@ -359,65 +573,60 @@ Page({
     }
 
     if (exercise.type === 'choice') {
-      const parsed = parseChoiceQuestion(exercise.question);
-      const matchedOption = parsed.options.find(item => item.key === exercise.answer || item.text === exercise.answer);
+      // 新结构化格式：有 prompt + options
+      if (exercise.options && exercise.options.length > 0) {
+        const matchedOption = exercise.options.find(
+          item => item.key === exercise.answer || item.text === exercise.answer
+        );
+        return {
+          currentExercise: exercise,
+          currentExerciseAnswerDisplay: matchedOption
+            ? `${matchedOption.key}. ${matchedOption.text}`
+            : exercise.answer,
+          choiceOptions: exercise.options,
+        };
+      }
+      // 兼容旧格式：有 question 但没有 options，降级解析
+      const parsed = this._parseLegacyChoice(exercise.question);
+      const matchedOption = parsed.options.find(
+        item => item.key === exercise.answer || item.text === exercise.answer
+      );
       return {
         currentExercise: {
           ...exercise,
-          prompt: parsed.prompt || exercise.question,
+          prompt: parsed.prompt,
         },
-        currentExerciseAnswerDisplay: matchedOption ? `${matchedOption.key}. ${matchedOption.text}` : exercise.answer,
+        currentExerciseAnswerDisplay: matchedOption
+          ? `${matchedOption.key}. ${matchedOption.text}`
+          : exercise.answer,
         choiceOptions: parsed.options,
       };
     }
 
+    // 填空题
     return {
       currentExercise: {
         ...exercise,
-        prompt: exercise.question,
+        prompt: exercise.prompt || exercise.question,
       },
       currentExerciseAnswerDisplay: exercise.answer || '',
       choiceOptions: [],
     };
   },
 
-  _setCurrentWordState({
-    wordSetTitle,
-    currentIndex,
-    totalWords,
-    currentWord,
-  }) {
-    const exerciseState = this._buildExerciseState(currentWord);
-    const hasExercise = currentWord && currentWord.exercises && currentWord.exercises.length > 0;
-    const isTestMode = this.data.mode === 'test';
+  // 兼容旧格式：question 文本中嵌入选项
+  _parseLegacyChoice(rawQuestion) {
+    const lines = (rawQuestion || '').split('\n').map(l => l.trim()).filter(Boolean);
+    const optionPattern = /^([A-Z])\.\s*(.+)$/;
+    const firstOptionIndex = lines.findIndex(line => optionPattern.test(line));
+    const promptLines = firstOptionIndex === -1 ? lines : lines.slice(0, firstOptionIndex);
+    const optionLines = firstOptionIndex === -1 ? [] : lines.slice(firstOptionIndex);
+    const options = optionLines.map(line => {
+      const m = line.match(optionPattern);
+      return m ? { key: m[1], text: m[2] } : null;
+    }).filter(Boolean);
 
-    // 附加音标
-    const wordWithPhonetic = currentWord ? {
-      ...currentWord,
-      phonetic: phonetics[currentWord.word] || '',
-    } : null;
-
-    this.setData({
-      ...(wordSetTitle ? { wordSetTitle } : {}),
-      currentIndex,
-      totalWords,
-      currentWord: wordWithPhonetic,
-      currentExercise: exerciseState.currentExercise,
-      currentExerciseAnswerDisplay: exerciseState.currentExerciseAnswerDisplay,
-      choiceOptions: exerciseState.choiceOptions,
-      showExamples: !isTestMode,
-      showExercise: hasExercise,
-      selectedAnswer: '',
-      answered: false,
-      isCorrect: false,
-      feedbackText: '',
-      exerciseRevealed: false,
-      fillInput: '',
-      nextButtonText: isTestMode && exerciseState.currentExercise
-        ? '先答题'
-        : (hasExercise ? '揭晓答案' : '下一个'),
-      progressPercent: ((currentIndex + 1) / totalWords * 100).toFixed(0),
-    });
+    return { prompt: promptLines.join('\n'), options };
   },
 
   goHome() {
@@ -434,8 +643,7 @@ Page({
   },
 
   onSharePoster() {
-    const logs = wx.getStorageSync('study_log') || {};
-    const totalDays = Object.keys(logs).filter(k => logs[k] && logs[k].wordIndices && logs[k].wordIndices.length > 0).length;
+    const totalDays = mastery.getTotalStudyDays();
     this.setData({
       streakDaysForPoster: totalDays,
       showPoster: true,

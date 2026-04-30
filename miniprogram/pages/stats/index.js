@@ -1,27 +1,6 @@
 // pages/stats/index.js
-const cambridgeA2Day1 = require('../../data/wordsets/cambridge-a2-day1');
-const cambridgeA2Day2 = require('../../data/wordsets/cambridge-a2-day2');
-const cambridgeA2Day3 = require('../../data/wordsets/cambridge-a2-day3');
-const cambridgeA2Day4 = require('../../data/wordsets/cambridge-a2-day4');
-const cambridgeA2Day5 = require('../../data/wordsets/cambridge-a2-day5');
-const cambridgeA2Day6 = require('../../data/wordsets/cambridge-a2-day6');
-const cambridgeA2Day7 = require('../../data/wordsets/cambridge-a2-day7');
-const cambridgeA2Day8 = require('../../data/wordsets/cambridge-a2-day8');
-const cambridgeA2Day9 = require('../../data/wordsets/cambridge-a2-day9');
-const cambridgeA2Day10 = require('../../data/wordsets/cambridge-a2-day10');
-
-const WORD_SETS = {
-  'cambridge-a2-day1': cambridgeA2Day1,
-  'cambridge-a2-day2': cambridgeA2Day2,
-  'cambridge-a2-day3': cambridgeA2Day3,
-  'cambridge-a2-day4': cambridgeA2Day4,
-  'cambridge-a2-day5': cambridgeA2Day5,
-  'cambridge-a2-day6': cambridgeA2Day6,
-  'cambridge-a2-day7': cambridgeA2Day7,
-  'cambridge-a2-day8': cambridgeA2Day8,
-  'cambridge-a2-day9': cambridgeA2Day9,
-  'cambridge-a2-day10': cambridgeA2Day10,
-};
+const wordsetRegistry = require('../../data/wordsets/index');
+const mastery = require('../../utils/mastery');
 
 function getToday() {
   const d = new Date();
@@ -53,6 +32,11 @@ Page({
     weekLabels: ['一', '二', '三', '四', '五', '六', '日'],
     wordSetProgress: [],
     showPoster: false,
+    todayAccuracy: 0,
+    todayAnswerCount: 0,
+    masteredCount: 0,
+    reviewCount: 0,
+    weakWords: [],
   },
 
   onShow() {
@@ -93,10 +77,8 @@ Page({
     const totalDaysInMonth = getMonthDays(year, month);
     const monthNames = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
 
-    // firstDay: 0=周日，转为周一起始
     const offset = (firstDay + 6) % 7;
     const calendarDays = [];
-    // 填充前面的空白
     for (let i = 0; i < offset; i++) {
       calendarDays.push({ day: '', studied: false, isToday: false });
     }
@@ -107,20 +89,44 @@ Page({
       calendarDays.push({ day: i, studied, isToday });
     }
 
-    // 词表进度
+    // 词表进度（掌握度）
     const setId = wx.getStorageSync('currentWordSetId');
     const wordSetProgress = [];
-    if (setId && WORD_SETS[setId]) {
-      const ws = WORD_SETS[setId];
-      const progressIndex = wx.getStorageSync(`progress_${setId}`) || 0;
-      const learnedCount = progressIndex + 1;
-      wordSetProgress.push({
-        title: ws.title,
-        learned: learnedCount,
-        total: ws.words.length,
-        percent: Math.round(learnedCount / ws.words.length * 100),
-      });
+    let masteredCount = 0;
+    let reviewCount = 0;
+    const weakWords = [];
+    if (setId) {
+      const ws = wordsetRegistry.getWordSetById(setId);
+      if (ws) {
+        const masteryStats = mastery.getSetMasteryStats(setId, ws.words.length);
+        masteredCount = masteryStats.masteredCount;
+        reviewCount = masteryStats.reviewCount;
+        wordSetProgress.push({
+          title: ws.title,
+          learned: masteryStats.seenCount,
+          total: ws.words.length,
+          percent: masteryStats.masteryPercent,
+          masteredCount: masteryStats.masteredCount,
+        });
+
+        // 薄弱词
+        const weak = mastery.getWeakWords(setId, 5);
+        weak.forEach(w => {
+          const wordData = ws.words.find(word => word.id === w.wordId);
+          if (wordData) {
+            weakWords.push({
+              word: wordData.word,
+              meaning: wordData.meaning,
+              correctCount: w.correctCount,
+              wrongCount: w.wrongCount,
+            });
+          }
+        });
+      }
     }
+
+    // 今日答题统计
+    const todayStats = mastery.getTodayStats();
 
     this.setData({
       streakDays: streak,
@@ -130,6 +136,11 @@ Page({
       calendarDays,
       currentMonth: `${year}年${monthNames[month]}`,
       wordSetProgress,
+      todayAccuracy: todayStats.accuracy,
+      todayAnswerCount: todayStats.answerCount,
+      masteredCount,
+      reviewCount,
+      weakWords,
     });
   },
 

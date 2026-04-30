@@ -5,205 +5,287 @@ module.exports = {
   },
   join: function(arr, sep) {
     return arr.join(sep);
+  },
+  phaseLabel: function(phase) {
+    if (phase === 'study') return '学习中';
+    if (phase === 'review') return '错题再练';
+    if (phase === 'done') return '本轮完成';
+    return '';
+  },
+  prompt: function(item) {
+    return item.prompt || item.question || '';
+  },
+  answerDisplay: function(item) {
+    if (!item.options || !item.options.length) return item.answer || '';
+    for (var i = 0; i < item.options.length; i++) {
+      if (item.options[i].key === item.answer) {
+        return item.answer + '. ' + item.options[i].text;
+      }
+    }
+    return item.answer || '';
   }
 }
 </wxs>
 
 <view class="quiz">
-  <!-- 顶部导航 -->
-  <view class="top-bar">
-    <view class="top-btn" bindtap="goHome">
-      <text class="top-btn-text">首页</text>
+  <!-- 本轮小结页（roundPhase === 'done' 时显示） -->
+  <view class="summary-page" wx:if="{{roundPhase === 'done'}}">
+    <image class="summary-zan" src="/images/zan.png" mode="aspectFit"></image>
+    <view class="summary-card">
+      <text class="summary-encourage">{{summaryEncourage}}</text>
+      <text class="summary-subtitle">本轮学习已完成</text>
     </view>
-    <view class="top-bar-right">
-      <view class="top-btn" bindtap="switchRange">
-        <text class="top-btn-text">切换范围</text>
+
+    <view class="summary-stats">
+      <view class="summary-stat-item">
+        <text class="summary-stat-value summary-stat-value--green">{{summaryCorrect}}</text>
+        <text class="summary-stat-label">答对</text>
       </view>
-      <view class="top-btn" bindtap="goStats">
-        <text class="top-btn-text">背诵统计</text>
+      <view class="summary-stat-item">
+        <text class="summary-stat-value summary-stat-value--red">{{summaryWrong}}</text>
+        <text class="summary-stat-label">答错</text>
+      </view>
+      <view class="summary-stat-item">
+        <text class="summary-stat-value">{{summaryAccuracy}}%</text>
+        <text class="summary-stat-label">正确率</text>
+      </view>
+      <view class="summary-stat-item">
+        <text class="summary-stat-value summary-stat-value--blue">{{summaryStreakMax}}</text>
+        <text class="summary-stat-label">最高连对</text>
+      </view>
+    </view>
+
+    <view class="summary-info" wx:if="{{summaryWordsLearned > 0}}">
+      <text class="summary-info-text">本轮学习 {{summaryWordsLearned}} 个词</text>
+    </view>
+
+    <view class="summary-wrong-section" wx:if="{{utils.hasContent(summaryWrongWords)}}">
+      <text class="summary-wrong-title">本轮错词</text>
+      <view class="summary-wrong-list">
+        <view class="summary-wrong-item" wx:for="{{summaryWrongWords}}" wx:key="word">
+          <text class="summary-wrong-word">{{item.word}}</text>
+          <text class="summary-wrong-meaning">{{item.meaning}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="summary-actions">
+      <view class="summary-btn summary-btn-primary" bindtap="onNextRound">
+        <text>再来一轮</text>
+      </view>
+      <view class="summary-btn-row">
+        <view class="summary-btn summary-btn-secondary" bindtap="goHome">
+          <text>返回首页</text>
+        </view>
+        <view class="summary-btn summary-btn-orange" bindtap="onSharePoster">
+          <text>分享打卡</text>
+        </view>
       </view>
     </view>
   </view>
 
-  <!-- 进度条 -->
-  <view class="progress-section">
-    <view class="progress-bar-bg">
-      <view class="progress-bar-fill" style="width: {{progressPercent}}%"></view>
+  <!-- 正常背诵界面（roundPhase !== 'done'） -->
+  <block wx:if="{{roundPhase !== 'done'}}">
+    <!-- 顶部导航 -->
+    <view class="top-bar">
+      <view class="top-btn" bindtap="goHome">
+        <text class="top-btn-text">首页</text>
+      </view>
+      <view class="top-bar-right">
+        <view class="top-btn" bindtap="switchRange">
+          <text class="top-btn-text">切换范围</text>
+        </view>
+        <view class="top-btn" bindtap="goStats">
+          <text class="top-btn-text">背诵统计</text>
+        </view>
+      </view>
     </view>
-    <text class="progress-text">{{currentIndex + 1}} / {{totalWords}}</text>
-  </view>
 
-  <view class="mode-switch">
-    <view
-      class="mode-btn {{mode === 'study' ? 'active' : ''}}"
-      data-mode="study"
-      bindtap="switchMode"
-    >
-      <text>学习模式</text>
+    <!-- 阶段指示 -->
+    <view class="phase-indicator" wx:if="{{roundPhase}}">
+      <text class="phase-badge phase-badge--{{roundPhase}}">{{utils.phaseLabel(roundPhase)}}</text>
     </view>
-    <view
-      class="mode-btn {{mode === 'test' ? 'active' : ''}}"
-      data-mode="test"
-      bindtap="switchMode"
-    >
-      <text>自测模式</text>
-    </view>
-  </view>
 
-  <view class="session-stats" wx:if="{{mode === 'test'}}">
-    <view class="session-stat">
-      <text class="session-stat-value">{{correctCount}}</text>
-      <text class="session-stat-label">答对</text>
+    <!-- 本轮进度条 -->
+    <view class="progress-section">
+      <view class="progress-bar-bg">
+        <view class="progress-bar-fill" style="width: {{roundTotal > 0 ? (roundIndex + 1) / roundTotal * 100 : 0}}%"></view>
+      </view>
+      <text class="progress-text">{{roundIndex + 1}} / {{roundTotal}}</text>
     </view>
-    <view class="session-stat">
-      <text class="session-stat-value">{{wrongCount}}</text>
-      <text class="session-stat-label">答错</text>
-    </view>
-    <view class="session-stat">
-      <text class="session-stat-value">{{streakCount}}</text>
-      <text class="session-stat-label">连对</text>
-    </view>
-  </view>
 
-  <view class="wordset-tag">{{wordSetTitle}}</view>
-
-  <view
-    class="test-card"
-    wx:if="{{mode === 'test' && currentExercise && currentExercise.type === 'choice' && !answered}}"
-  >
-    <view class="test-card-tag">自测题</view>
-    <text class="test-card-question">{{currentExercise.prompt}}</text>
-    <view class="choice-list">
+    <view class="mode-switch">
       <view
-        class="choice-item"
-        wx:for="{{choiceOptions}}"
-        wx:key="key"
-        data-key="{{item.key}}"
-        bindtap="onSelectChoice"
+        class="mode-btn {{mode === 'study' ? 'active' : ''}}"
+        data-mode="study"
+        bindtap="switchMode"
       >
-        <text class="choice-key">{{item.key}}</text>
-        <text class="choice-text">{{item.text}}</text>
+        <text>学习模式</text>
       </view>
-    </view>
-  </view>
-
-  <view
-    class="test-card"
-    wx:if="{{mode === 'test' && currentExercise && currentExercise.type === 'fill' && !answered}}"
-  >
-    <view class="test-card-tag">填空题</view>
-    <text class="test-card-question">{{currentExercise.prompt}}</text>
-    <text class="test-card-hint">提示：{{currentWord.meaning}}</text>
-    <input
-      class="fill-input"
-      placeholder="输入你的答案"
-      value="{{fillInput}}"
-      bindinput="onFillInput"
-      bindconfirm="onSubmitFill"
-      adjust-position="{{true}}"
-    />
-    <view class="fill-submit-btn" bindtap="onSubmitFill">
-      <text>确认</text>
-    </view>
-  </view>
-
-  <view class="feedback-card {{isCorrect ? 'correct' : 'wrong'}}" wx:if="{{mode === 'test' && answered}}">
-    <text class="feedback-title">{{isCorrect ? '回答正确' : '回答错误'}}</text>
-    <text class="feedback-text">{{feedbackText}}</text>
-    <text class="feedback-extra" wx:if="{{currentExerciseAnswerDisplay}}">
-      正确答案：{{currentExerciseAnswerDisplay}}
-    </text>
-  </view>
-
-  <!-- 单词区 -->
-  <view
-    class="word-card"
-    wx:if="{{currentWord && (mode === 'study' || answered || !currentExercise)}}"
-  >
-    <view class="word-main">
-      <text class="word-en">{{currentWord.word}}</text>
-      <text class="word-phonetic" wx:if="{{currentWord.phonetic}}">{{currentWord.phonetic}}</text>
-      <view class="word-meta">
-        <text class="word-pos" wx:if="{{currentWord.pos}}">{{currentWord.pos}}</text>
-        <text class="word-meaning">{{currentWord.meaning}}</text>
+      <view
+        class="mode-btn {{mode === 'test' ? 'active' : ''}}"
+        data-mode="test"
+        bindtap="switchMode"
+      >
+        <text>自测模式</text>
       </view>
     </view>
 
-    <view class="alternatives" wx:if="{{utils.hasContent(currentWord.alternatives)}}">
-      <text class="alt-text">也作：{{utils.join(currentWord.alternatives, ' / ')}}</text>
-    </view>
-  </view>
-
-  <!-- 例句区 -->
-  <view
-    class="section"
-    wx:if="{{utils.hasContent(currentWord.examples) && (mode === 'study' || answered || !currentExercise)}}"
-    bindtap="toggleExamples"
-  >
-    <view class="section-header">
-      <text class="section-icon">{{showExamples ? '📖' : '📕'}}</text>
-      <text class="section-title">例句</text>
-      <text class="section-toggle">{{showExamples ? '收起' : '展开'}}</text>
-    </view>
-
-    <view class="section-content" wx:if="{{showExamples}}">
-      <view class="example-item" wx:for="{{currentWord.examples}}" wx:key="index">
-        <text class="example-en">{{item.en}}</text>
-        <text class="example-zh" wx:if="{{item.zh}}">{{item.zh}}</text>
-        <text class="example-source" wx:if="{{item.source}}">出自：{{item.source}}</text>
+    <view class="session-stats" wx:if="{{mode === 'test'}}">
+      <view class="session-stat">
+        <text class="session-stat-value session-stat-value--green">{{roundCorrectCount}}</text>
+        <text class="session-stat-label">答对</text>
+      </view>
+      <view class="session-stat">
+        <text class="session-stat-value session-stat-value--red">{{roundWrongCount}}</text>
+        <text class="session-stat-label">答错</text>
+      </view>
+      <view class="session-stat">
+        <text class="session-stat-value session-stat-value--blue">{{roundStreakCurrent}}</text>
+        <text class="session-stat-label">连对</text>
       </view>
     </view>
-  </view>
 
-  <!-- 练习题区 -->
-  <view
-    class="section"
-    wx:if="{{utils.hasContent(currentWord.exercises) && (mode === 'study' || !currentExercise)}}"
-  >
-    <view class="section-header" bindtap="toggleExercise">
-      <text class="section-icon">✏️</text>
-      <text class="section-title">练习</text>
-      <text class="section-toggle">{{showExercise ? '收起' : '展开'}}</text>
-    </view>
+    <view class="wordset-tag">{{wordSetTitle}}</view>
 
-    <view class="section-content" wx:if="{{showExercise}}">
-      <view class="exercise-item" wx:for="{{currentWord.exercises}}" wx:key="index">
-        <view class="exercise-type-tag" wx:if="{{item.type === 'choice'}}">选择题</view>
-        <view class="exercise-type-tag" wx:elif="{{item.type === 'fill'}}">填空题</view>
-
-        <!-- 填空题 -->
-        <view wx:if="{{item.type === 'fill'}}">
-          <text class="exercise-question">{{item.question}}</text>
-          <view class="exercise-answer" wx:if="{{exerciseRevealed}}">
-            <text class="answer-label">答案：</text>
-            <text class="answer-text">{{item.answer}}</text>
-          </view>
-        </view>
-
-        <!-- 选择题 -->
-        <view wx:elif="{{item.type === 'choice'}}">
-          <text class="exercise-question">{{item.question}}</text>
-          <view class="exercise-answer" wx:if="{{exerciseRevealed}}">
-            <text class="answer-label">答案：</text>
-            <text class="answer-text">{{item.answer}}</text>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
-
-  <!-- 底部导航 -->
-  <view class="bottom-nav">
-    <view class="nav-btn nav-btn-prev {{currentIndex <= 0 ? 'disabled' : ''}}" bindtap="prevWord">
-      <text>上一个</text>
-    </view>
     <view
-      class="nav-btn {{currentIndex >= totalWords - 1 && mode === 'study' ? 'nav-btn-share' : 'nav-btn-next'}} {{currentIndex >= totalWords - 1 && mode !== 'study' ? 'disabled' : ''}}"
-      bindtap="{{currentIndex >= totalWords - 1 && mode === 'study' ? 'onSharePoster' : 'nextWord'}}"
+      class="test-card"
+      wx:if="{{mode === 'test' && currentExercise && currentExercise.type === 'choice' && !answered}}"
     >
-      <text>{{currentIndex >= totalWords - 1 && mode === 'study' ? '分享打卡' : nextButtonText}}</text>
+      <view class="test-card-tag">自测题</view>
+      <text class="test-card-question">{{currentExercise.prompt}}</text>
+      <view class="choice-list">
+        <view
+          class="choice-item"
+          wx:for="{{choiceOptions}}"
+          wx:key="key"
+          data-key="{{item.key}}"
+          bindtap="onSelectChoice"
+        >
+          <text class="choice-key">{{item.key}}</text>
+          <text class="choice-text">{{item.text}}</text>
+        </view>
+      </view>
     </view>
-  </view>
+
+    <view
+      class="test-card"
+      wx:if="{{mode === 'test' && currentExercise && currentExercise.type === 'fill' && !answered}}"
+    >
+      <view class="test-card-tag">填空题</view>
+      <text class="test-card-question">{{currentExercise.prompt}}</text>
+      <text class="test-card-hint">提示：{{currentWord.meaning}}</text>
+      <input
+        class="fill-input"
+        placeholder="输入你的答案"
+        value="{{fillInput}}"
+        bindinput="onFillInput"
+        bindconfirm="onSubmitFill"
+        adjust-position="{{true}}"
+      />
+      <view class="fill-submit-btn" bindtap="onSubmitFill">
+        <text>确认</text>
+      </view>
+    </view>
+
+    <view class="feedback-card {{isCorrect ? 'correct' : 'wrong'}}" wx:if="{{mode === 'test' && answered}}">
+      <text class="feedback-title">{{isCorrect ? '回答正确' : '回答错误'}}</text>
+      <text class="feedback-text">{{feedbackText}}</text>
+      <text class="feedback-extra" wx:if="{{currentExerciseAnswerDisplay}}">
+        正确答案：{{currentExerciseAnswerDisplay}}
+      </text>
+    </view>
+
+    <!-- 单词区 -->
+    <view
+      class="word-card"
+      wx:if="{{currentWord && (mode === 'study' || answered || !currentExercise)}}"
+    >
+      <view class="word-main">
+        <text class="word-en">{{currentWord.word}}</text>
+        <text class="word-phonetic" wx:if="{{currentWord.phonetic}}">{{currentWord.phonetic}}</text>
+        <view class="word-meta">
+          <text class="word-pos" wx:if="{{currentWord.pos}}">{{currentWord.pos}}</text>
+          <text class="word-meaning">{{currentWord.meaning}}</text>
+        </view>
+      </view>
+
+      <view class="alternatives" wx:if="{{utils.hasContent(currentWord.alternatives)}}">
+        <text class="alt-text">也作：{{utils.join(currentWord.alternatives, ' / ')}}</text>
+      </view>
+    </view>
+
+    <!-- 例句区 -->
+    <view
+      class="section"
+      wx:if="{{utils.hasContent(currentWord.examples) && (mode === 'study' || answered || !currentExercise)}}"
+      bindtap="toggleExamples"
+    >
+      <view class="section-header">
+        <text class="section-icon">{{showExamples ? '📖' : '📕'}}</text>
+        <text class="section-title">例句</text>
+        <text class="section-toggle">{{showExamples ? '收起' : '展开'}}</text>
+      </view>
+
+      <view class="section-content" wx:if="{{showExamples}}">
+        <view class="example-item" wx:for="{{currentWord.examples}}" wx:key="index">
+          <text class="example-en">{{item.en}}</text>
+          <text class="example-zh" wx:if="{{item.zh}}">{{item.zh}}</text>
+          <text class="example-source" wx:if="{{item.source}}">出自：{{item.source}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 练习题区 -->
+    <view
+      class="section"
+      wx:if="{{utils.hasContent(currentWord.exercises) && (mode === 'study' || !currentExercise)}}"
+    >
+      <view class="section-header" bindtap="toggleExercise">
+        <text class="section-icon">✏️</text>
+        <text class="section-title">练习</text>
+        <text class="section-toggle">{{showExercise ? '收起' : '展开'}}</text>
+      </view>
+
+      <view class="section-content" wx:if="{{showExercise}}">
+        <view class="exercise-item" wx:for="{{currentWord.exercises}}" wx:key="index">
+          <view class="exercise-type-tag" wx:if="{{item.type === 'choice'}}">选择题</view>
+          <view class="exercise-type-tag" wx:elif="{{item.type === 'fill'}}">填空题</view>
+
+          <!-- 填空题 -->
+          <view wx:if="{{item.type === 'fill'}}">
+            <text class="exercise-question">{{utils.prompt(item)}}</text>
+            <view class="exercise-answer" wx:if="{{exerciseRevealed}}">
+              <text class="answer-label">答案：</text>
+              <text class="answer-text">{{item.answer}}</text>
+            </view>
+          </view>
+
+          <!-- 选择题 -->
+          <view wx:elif="{{item.type === 'choice'}}">
+            <text class="exercise-question">{{utils.prompt(item)}}</text>
+            <view class="exercise-answer" wx:if="{{exerciseRevealed}}">
+              <text class="answer-label">答案：</text>
+              <text class="answer-text">{{utils.answerDisplay(item)}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部导航 -->
+    <view class="bottom-nav">
+      <view class="nav-btn nav-btn-prev {{roundIndex <= 0 ? 'disabled' : ''}}" bindtap="prevWord">
+        <text>上一个</text>
+      </view>
+      <view
+        class="nav-btn nav-btn-next"
+        bindtap="nextWord"
+      >
+        <text>{{roundIndex >= roundTotal - 1 ? '完成本轮' : nextButtonText}}</text>
+      </view>
+    </view>
+  </block>
 
   <!-- 分享海报 -->
   <share-poster

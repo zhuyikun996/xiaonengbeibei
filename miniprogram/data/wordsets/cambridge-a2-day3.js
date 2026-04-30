@@ -25,8 +25,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A pupil is a ____.\nA. student\nB. teacher",
-          "answer": "A"
+          "prompt": "A pupil is a ____.", "options": [{"key":"A","text":"student"},{"key":"B","text":"teacher"}], "answer": "A"
         }
       ]
     },
@@ -79,8 +78,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A course is something you ____.\nA. study\nB. throw",
-          "answer": "A"
+          "prompt": "A course is something you ____.", "options": [{"key":"A","text":"study"},{"key":"B","text":"throw"}], "answer": "A"
         }
       ]
     },
@@ -106,8 +104,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A quiz is a small ____.\nA. test\nB. playground",
-          "answer": "A"
+          "prompt": "A quiz is a small ____.", "options": [{"key":"A","text":"test"},{"key":"B","text":"playground"}], "answer": "A"
         }
       ]
     },
@@ -160,8 +157,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "If you do not pass an exam, you ____ it.\nA. fail\nB. win",
-          "answer": "A"
+          "prompt": "If you do not pass an exam, you ____ it.", "options": [{"key":"A","text":"fail"},{"key":"B","text":"win"}], "answer": "A"
         }
       ]
     },
@@ -214,8 +210,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A point in a discussion is an ____.\nA. idea\nB. sentence",
-          "answer": "A"
+          "prompt": "A point in a discussion is an ____.", "options": [{"key":"A","text":"idea"},{"key":"B","text":"sentence"}], "answer": "A"
         }
       ]
     },
@@ -295,8 +290,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Where can you look up a new word?\nA. in a dictionary\nB. in a racket",
-          "answer": "A"
+          "prompt": "Where can you look up a new word?", "options": [{"key":"A","text":"in a dictionary"},{"key":"B","text":"in a racket"}], "answer": "A"
         }
       ]
     },
@@ -349,8 +343,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A beginner is someone who ____.\nA. is new to something\nB. has won a prize",
-          "answer": "A"
+          "prompt": "A beginner is someone who ____.", "options": [{"key":"A","text":"is new to something"},{"key":"B","text":"has won a prize"}], "answer": "A"
         }
       ]
     },
@@ -403,8 +396,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A sentence is made of ____.\nA. words\nB. goals",
-          "answer": "A"
+          "prompt": "A sentence is made of ____.", "options": [{"key":"A","text":"words"},{"key":"B","text":"goals"}], "answer": "A"
         }
       ]
     },
@@ -457,8 +449,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which subject may include experiments?\nA. science\nB. history",
-          "answer": "A"
+          "prompt": "Which subject may include experiments?", "options": [{"key":"A","text":"science"},{"key":"B","text":"history"}], "answer": "A"
         }
       ]
     },
@@ -511,8 +502,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which subject includes maps?\nA. geography\nB. tennis",
-          "answer": "A"
+          "prompt": "Which subject includes maps?", "options": [{"key":"A","text":"geography"},{"key":"B","text":"tennis"}], "answer": "A"
         }
       ]
     },
@@ -565,8 +555,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A primary school is for ____ children.\nA. younger\nB. older",
-          "answer": "A"
+          "prompt": "A primary school is for ____ children.", "options": [{"key":"A","text":"younger"},{"key":"B","text":"older"}], "answer": "A"
         }
       ]
     },
@@ -619,8 +608,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "An outdoor activity happens ____.\nA. outside\nB. in a dictionary",
-          "answer": "A"
+          "prompt": "An outdoor activity happens ____.", "options": [{"key":"A","text":"outside"},{"key":"B","text":"in a dictionary"}], "answer": "A"
         }
       ]
     },
@@ -673,8 +661,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which sport uses a stick?\nA. hockey\nB. history",
-          "answer": "A"
+          "prompt": "Which sport uses a stick?", "options": [{"key":"A","text":"hockey"},{"key":"B","text":"history"}], "answer": "A"
         }
       ]
     },
@@ -727,8 +714,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which sport uses a shuttlecock?\nA. badminton\nB. rugby",
-          "answer": "A"
+          "prompt": "Which sport uses a shuttlecock?", "options": [{"key":"A","text":"badminton"},{"key":"B","text":"rugby"}], "answer": "A"
         }
       ]
     },
@@ -781,8 +767,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which sport can you do on ice?\nA. skating\nB. maths",
-          "answer": "A"
+          "prompt": "Which sport can you do on ice?", "options": [{"key":"A","text":"skating"},{"key":"B","text":"maths"}], "answer": "A"
         }
       ]
     },
@@ -835,8 +820,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which sport needs balance and control?\nA. gymnastics\nB. dictionary",
-          "answer": "A"
+          "prompt": "Which sport needs balance and control?", "options": [{"key":"A","text":"gymnastics"},{"key":"B","text":"dictionary"}], "answer": "A"
         }
       ]
     },
@@ -889,8 +873,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which thing can you use to hit a ball?\nA. bat\nB. sentence",
-          "answer": "A"
+          "prompt": "Which thing can you use to hit a ball?", "options": [{"key":"A","text":"bat"},{"key":"B","text":"sentence"}], "answer": "A"
         }
       ]
     },
@@ -943,8 +926,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "You usually kick with your ____.\nA. foot\nB. hand",
-          "answer": "A"
+          "prompt": "You usually kick with your ____.", "options": [{"key":"A","text":"foot"},{"key":"B","text":"hand"}], "answer": "A"
         }
       ]
     },
@@ -997,8 +979,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "If you send the ball through the air with your hand, you ____ it.\nA. throw\nB. discuss",
-          "answer": "A"
+          "prompt": "If you send the ball through the air with your hand, you ____ it.", "options": [{"key":"A","text":"throw"},{"key":"B","text":"discuss"}], "answer": "A"
         }
       ]
     },
@@ -1051,8 +1032,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Maths and history are school ____.\nA. subjects\nB. prizes",
-          "answer": "A"
+          "prompt": "Maths and history are school ____.", "options": [{"key":"A","text":"subjects"},{"key":"B","text":"prizes"}], "answer": "A"
         }
       ]
     },
@@ -1078,8 +1058,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Is history a language?\nA. No\nB. Yes",
-          "answer": "A"
+          "prompt": "Is history a language?", "options": [{"key":"A","text":"No"},{"key":"B","text":"Yes"}], "answer": "A"
         }
       ]
     },
@@ -1132,8 +1111,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "If you do something wrong, you make a ____.\nA. mistake\nB. prize",
-          "answer": "A"
+          "prompt": "If you do something wrong, you make a ____.", "options": [{"key":"A","text":"mistake"},{"key":"B","text":"prize"}], "answer": "A"
         }
       ]
     },
@@ -1240,8 +1218,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Advice means ____.\nA. helpful ideas\nB. sports equipment",
-          "answer": "A"
+          "prompt": "Advice means ____.", "options": [{"key":"A","text":"helpful ideas"},{"key":"B","text":"sports equipment"}], "answer": "A"
         }
       ]
     },
@@ -1294,8 +1271,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'Receive a present' means ____.\nA. get a gift\nB. give a gift",
-          "answer": "A"
+          "prompt": "'Receive a present' means ____.", "options": [{"key":"A","text":"get a gift"},{"key":"B","text":"give a gift"}], "answer": "A"
         }
       ]
     },
@@ -1348,8 +1324,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "The class might be too ______ for beginners.\nA. easy\nB. hard",
-          "answer": "B"
+          "prompt": "The class might be too ______ for beginners.", "options": [{"key":"A","text":"easy"},{"key":"B","text":"hard"}], "answer": "B"
         }
       ]
     },
@@ -1375,8 +1350,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "After ______ her course, her first job was teaching.\nA. finishing\nB. returning",
-          "answer": "A"
+          "prompt": "After ______ her course, her first job was teaching.", "options": [{"key":"A","text":"finishing"},{"key":"B","text":"returning"}], "answer": "A"
         }
       ]
     },
@@ -1402,8 +1376,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Should Mary bring her mountain bike?\nA. Yes\nB. No",
-          "answer": "A"
+          "prompt": "Should Mary bring her mountain bike?", "options": [{"key":"A","text":"Yes"},{"key":"B","text":"No"}], "answer": "A"
         }
       ]
     },
@@ -1456,8 +1429,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A football game is a football ____.\nA. match\nB. paragraph",
-          "answer": "A"
+          "prompt": "A football game is a football ____.", "options": [{"key":"A","text":"match"},{"key":"B","text":"paragraph"}], "answer": "A"
         }
       ]
     },
@@ -1483,8 +1455,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "What did they do together before the race?\nA. a sport\nB. a meal",
-          "answer": "A"
+          "prompt": "What did they do together before the race?", "options": [{"key":"A","text":"a sport"},{"key":"B","text":"a meal"}], "answer": "A"
         }
       ]
     },
@@ -1510,8 +1481,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "He won a national ______ for young engineers.\nA. game\nB. competition",
-          "answer": "B"
+          "prompt": "He won a national ______ for young engineers.", "options": [{"key":"A","text":"game"},{"key":"B","text":"competition"}], "answer": "B"
         }
       ]
     },
@@ -1537,8 +1507,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "If you do very good work in a competition, you may win a ____.\nA. prize\nB. mistake",
-          "answer": "A"
+          "prompt": "If you do very good work in a competition, you may win a ____.", "options": [{"key":"A","text":"prize"},{"key":"B","text":"mistake"}], "answer": "A"
         }
       ]
     },
@@ -1566,8 +1535,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "They were sad because they didn't _____ any prizes.\nA. make\nB. win",
-          "answer": "B"
+          "prompt": "They were sad because they didn't _____ any prizes.", "options": [{"key":"A","text":"make"},{"key":"B","text":"win"}], "answer": "B"
         }
       ]
     },
@@ -1593,8 +1561,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "In football, a goal means ____.\nA. getting points by scoring\nB. a school subject",
-          "answer": "A"
+          "prompt": "In football, a goal means ____.", "options": [{"key":"A","text":"getting points by scoring"},{"key":"B","text":"a school subject"}], "answer": "A"
         }
       ]
     },
@@ -1620,8 +1587,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "If she is a big fan of basketball, she ____ it.\nA. likes\nB. dislikes",
-          "answer": "A"
+          "prompt": "If she is a big fan of basketball, she ____ it.", "options": [{"key":"A","text":"likes"},{"key":"B","text":"dislikes"}], "answer": "A"
         }
       ]
     },
@@ -1674,8 +1640,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A net and a ball are sports ____.\nA. equipment\nB. examples",
-          "answer": "A"
+          "prompt": "A net and a ball are sports ____.", "options": [{"key":"A","text":"equipment"},{"key":"B","text":"examples"}], "answer": "A"
         }
       ]
     },
@@ -1701,8 +1666,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "'Suddenly' is closest in meaning to ____.\nA. immediately and unexpectedly\nB. carefully",
-          "answer": "A"
+          "prompt": "'Suddenly' is closest in meaning to ____.", "options": [{"key":"A","text":"immediately and unexpectedly"},{"key":"B","text":"carefully"}], "answer": "A"
         }
       ]
     },
@@ -1728,8 +1692,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "If a place is crowded, it is ____ to get a seat.\nA. easy\nB. hard",
-          "answer": "B"
+          "prompt": "If a place is crowded, it is ____ to get a seat.", "options": [{"key":"A","text":"easy"},{"key":"B","text":"hard"}], "answer": "B"
         }
       ]
     },
@@ -1755,8 +1718,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which word means '原因'?\nA. reason\nB. race",
-          "answer": "A"
+          "prompt": "Which word means '原因'?", "options": [{"key":"A","text":"reason"},{"key":"B","text":"race"}], "answer": "A"
         }
       ]
     },
@@ -1809,8 +1771,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A paragraph is part of a ____.\nA. text\nB. racket",
-          "answer": "A"
+          "prompt": "A paragraph is part of a ____.", "options": [{"key":"A","text":"text"},{"key":"B","text":"racket"}], "answer": "A"
         }
       ]
     },
@@ -1836,8 +1797,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A candidate can be a person in an exam or a ____.\nA. job competition\nB. playground",
-          "answer": "A"
+          "prompt": "A candidate can be a person in an exam or a ____.", "options": [{"key":"A","text":"job competition"},{"key":"B","text":"playground"}], "answer": "A"
         }
       ]
     }

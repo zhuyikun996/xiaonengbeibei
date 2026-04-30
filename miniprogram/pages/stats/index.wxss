@@ -203,6 +203,89 @@
   transition: width 0.3s ease;
 }
 
+/* 掌握度概览 */
+.mastery-summary {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 28rpx;
+}
+
+.mastery-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.mastery-number {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.mastery-number--green {
+  color: #52c41a;
+}
+
+.mastery-number--orange {
+  color: #F5A623;
+}
+
+.mastery-label {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 薄弱词列表 */
+.weak-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.weak-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.weak-item:last-child {
+  border-bottom: none;
+}
+
+.weak-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.weak-word {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333;
+}
+
+.weak-meaning {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.weak-stats {
+  display: flex;
+  gap: 16rpx;
+  font-size: 22rpx;
+}
+
+.weak-correct {
+  color: #52c41a;
+}
+
+.weak-wrong {
+  color: #ff6b6b;
+}
+
 /* 分享按钮 */
 .share-section {
   margin-top: 16rpx;

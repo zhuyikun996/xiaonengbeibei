@@ -54,8 +54,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Your aunt is your ____.\nA. relative\nB. receptionist",
-          "answer": "A"
+          "prompt": "Your aunt is your ____.", "options": [{"key":"A","text":"relative"},{"key":"B","text":"receptionist"}], "answer": "A"
         }
       ]
     },
@@ -108,8 +107,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A husband is a married woman's ____.\nA. brother\nB. partner",
-          "answer": "B"
+          "prompt": "A husband is a married woman's ____.", "options": [{"key":"A","text":"brother"},{"key":"B","text":"partner"}], "answer": "B"
         }
       ]
     },
@@ -162,8 +160,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A guest is someone who ____.\nA. visits you\nB. judges a match",
-          "answer": "A"
+          "prompt": "A guest is someone who ____.", "options": [{"key":"A","text":"visits you"},{"key":"B","text":"judges a match"}], "answer": "A"
         }
       ]
     },
@@ -218,8 +215,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "If two friends know each other very well, they are ____.\nA. close\nB. lost",
-          "answer": "A"
+          "prompt": "If two friends know each other very well, they are ____.", "options": [{"key":"A","text":"close"},{"key":"B","text":"lost"}], "answer": "A"
         }
       ]
     },
@@ -272,8 +268,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "If you want more information, you should ____ them.\nA. contact\nB. retire",
-          "answer": "A"
+          "prompt": "If you want more information, you should ____ them.", "options": [{"key":"A","text":"contact"},{"key":"B","text":"retire"}], "answer": "A"
         }
       ]
     },
@@ -330,8 +325,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Who writes news stories?\nA. a reporter\nB. a guest",
-          "answer": "A"
+          "prompt": "Who writes news stories?", "options": [{"key":"A","text":"a reporter"},{"key":"B","text":"a guest"}], "answer": "A"
         }
       ]
     },
@@ -384,8 +378,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Who may design bridges or machines?\nA. an engineer\nB. a waiter",
-          "answer": "A"
+          "prompt": "Who may design bridges or machines?", "options": [{"key":"A","text":"an engineer"},{"key":"B","text":"a waiter"}], "answer": "A"
         }
       ]
     },
@@ -438,8 +431,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Who cuts your hair?\nA. a hairdresser\nB. a surgeon",
-          "answer": "A"
+          "prompt": "Who cuts your hair?", "options": [{"key":"A","text":"a hairdresser"},{"key":"B","text":"a surgeon"}], "answer": "A"
         }
       ]
     },
@@ -492,8 +484,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Who works at reception?\nA. a receptionist\nB. a tour guide",
-          "answer": "A"
+          "prompt": "Who works at reception?", "options": [{"key":"A","text":"a receptionist"},{"key":"B","text":"a tour guide"}], "answer": "A"
         }
       ]
     },
@@ -546,8 +537,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Who helps with tooth problems?\nA. a dentist\nB. a manager",
-          "answer": "A"
+          "prompt": "Who helps with tooth problems?", "options": [{"key":"A","text":"a dentist"},{"key":"B","text":"a manager"}], "answer": "A"
         }
       ]
     },
@@ -600,8 +590,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Who may work in a pharmacy?\nA. a chemist\nB. a judge",
-          "answer": "A"
+          "prompt": "Who may work in a pharmacy?", "options": [{"key":"A","text":"a chemist"},{"key":"B","text":"a judge"}], "answer": "A"
         }
       ]
     },
@@ -654,8 +643,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Who shows tourists interesting places?\nA. a tour guide\nB. a secretary",
-          "answer": "A"
+          "prompt": "Who shows tourists interesting places?", "options": [{"key":"A","text":"a tour guide"},{"key":"B","text":"a secretary"}], "answer": "A"
         }
       ]
     },
@@ -710,8 +698,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Who works in a shop and helps customers?\nA. a shop assistant\nB. a grandparent",
-          "answer": "A"
+          "prompt": "Who works in a shop and helps customers?", "options": [{"key":"A","text":"a shop assistant"},{"key":"B","text":"a grandparent"}], "answer": "A"
         }
       ]
     },
@@ -764,8 +751,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Who may answer calls and arrange meetings?\nA. a secretary\nB. a mechanic",
-          "answer": "A"
+          "prompt": "Who may answer calls and arrange meetings?", "options": [{"key":"A","text":"a secretary"},{"key":"B","text":"a mechanic"}], "answer": "A"
         }
       ]
     },
@@ -818,8 +804,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A company may ____ you before giving you a job.\nA. interview\nB. invent",
-          "answer": "A"
+          "prompt": "A company may ____ you before giving you a job.", "options": [{"key":"A","text":"interview"},{"key":"B","text":"invent"}], "answer": "A"
         }
       ]
     },
@@ -874,8 +859,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "The person you work with closely can be your ____.\nA. partner\nB. grandchild",
-          "answer": "A"
+          "prompt": "The person you work with closely can be your ____.", "options": [{"key":"A","text":"partner"},{"key":"B","text":"grandchild"}], "answer": "A"
         }
       ]
     },
@@ -901,8 +885,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A colleague is ____.\nA. a person you work with\nB. a person in your family",
-          "answer": "A"
+          "prompt": "A colleague is ____.", "options": [{"key":"A","text":"a person you work with"},{"key":"B","text":"a person in your family"}], "answer": "A"
         }
       ]
     },
@@ -928,8 +911,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Could you tell me _____ you were born, Tom?\nA. who\nB. when",
-          "answer": "B"
+          "prompt": "Could you tell me _____ you were born, Tom?", "options": [{"key":"A","text":"who"},{"key":"B","text":"when"}], "answer": "B"
         }
       ]
     },
@@ -1038,8 +1020,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Which one is correct?\nA. one of the staff\nB. one of the staffs",
-          "answer": "A"
+          "prompt": "Which one is correct?", "options": [{"key":"A","text":"one of the staff"},{"key":"B","text":"one of the staffs"}], "answer": "A"
         }
       ]
     },
@@ -1065,8 +1046,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A person older than 18 is usually an ____.\nA. adult\nB. teenager",
-          "answer": "A"
+          "prompt": "A person older than 18 is usually an ____.", "options": [{"key":"A","text":"adult"},{"key":"B","text":"teenager"}], "answer": "A"
         }
       ]
     },
@@ -1173,8 +1153,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Where do many business people work?\nA. in an office\nB. in a pharmacy",
-          "answer": "A"
+          "prompt": "Where do many business people work?", "options": [{"key":"A","text":"in an office"},{"key":"B","text":"in a pharmacy"}], "answer": "A"
         }
       ]
     },
@@ -1254,8 +1233,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "If you join a club, you become a ____.\nA. member\nB. judge",
-          "answer": "A"
+          "prompt": "If you join a club, you become a ____.", "options": [{"key":"A","text":"member"},{"key":"B","text":"judge"}], "answer": "A"
         }
       ]
     },
@@ -1283,8 +1261,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Why was the man late for ____?\nA. work\nB. salary",
-          "answer": "A"
+          "prompt": "Why was the man late for ____?", "options": [{"key":"A","text":"work"},{"key":"B","text":"salary"}], "answer": "A"
         }
       ]
     },
@@ -1310,8 +1287,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "If you are late, you may not see your dentist that day. This is about a(n) ____.\nA. appointment\nB. interview",
-          "answer": "A"
+          "prompt": "If you are late, you may not see your dentist that day. This is about a(n) ____.", "options": [{"key":"A","text":"appointment"},{"key":"B","text":"interview"}], "answer": "A"
         }
       ]
     },
@@ -1337,8 +1313,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A judge is ____.\nA. a person who decides who has won\nB. a person who takes part",
-          "answer": "A"
+          "prompt": "A judge is ____.", "options": [{"key":"A","text":"a person who decides who has won"},{"key":"B","text":"a person who takes part"}], "answer": "A"
         }
       ]
     },
@@ -1364,8 +1339,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "When he was 20, he _____ his own business.\nA. started\nB. closed",
-          "answer": "A"
+          "prompt": "When he was 20, he _____ his own business.", "options": [{"key":"A","text":"started"},{"key":"B","text":"closed"}], "answer": "A"
         }
       ]
     },
@@ -1420,8 +1394,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Basketball practise is always ____ Tuesdays and Thursdays.\nA. on\nB. at",
-          "answer": "A"
+          "prompt": "Basketball practise is always ____ Tuesdays and Thursdays.", "options": [{"key":"A","text":"on"},{"key":"B","text":"at"}], "answer": "A"
         }
       ]
     },
@@ -1501,8 +1474,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "If you have a meeting every Monday, it’s a ______ meeting.\nA. weekly\nB. daily",
-          "answer": "A"
+          "prompt": "If you have a meeting every Monday, it’s a ______ meeting.", "options": [{"key":"A","text":"weekly"},{"key":"B","text":"daily"}], "answer": "A"
         }
       ]
     },
@@ -1555,8 +1527,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Mark wants Suzy to help him ____ their project.\nA. complete\nB. judge",
-          "answer": "A"
+          "prompt": "Mark wants Suzy to help him ____ their project.", "options": [{"key":"A","text":"complete"},{"key":"B","text":"judge"}], "answer": "A"
         }
       ]
     },
@@ -1609,8 +1580,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "A grandchild is the child of your ____.\nA. son or daughter\nB. neighbour",
-          "answer": "A"
+          "prompt": "A grandchild is the child of your ____.", "options": [{"key":"A","text":"son or daughter"},{"key":"B","text":"neighbour"}], "answer": "A"
         }
       ]
     },
@@ -1663,8 +1633,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "Contact Louise if you want to ____ the way the station looks.\nA. improve\nB. retire",
-          "answer": "A"
+          "prompt": "Contact Louise if you want to ____ the way the station looks.", "options": [{"key":"A","text":"improve"},{"key":"B","text":"retire"}], "answer": "A"
         }
       ]
     },
@@ -1692,8 +1661,7 @@ module.exports = {
       "exercises": [
         {
           "type": "choice",
-          "question": "He works twenty hours each week, so he has a ________ job.\nA. part-time\nB. full-time",
-          "answer": "A"
+          "prompt": "He works twenty hours each week, so he has a ________ job.", "options": [{"key":"A","text":"part-time"},{"key":"B","text":"full-time"}], "answer": "A"
         }
       ]
     }

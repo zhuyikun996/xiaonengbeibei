@@ -23,6 +23,53 @@ module.exports = {
     </view>
   </view>
 
+  <!-- 词表掌握度 -->
+  <view class="section-card" wx:if="{{wordSetProgress.length > 0}}">
+    <view class="section-title">词表掌握度</view>
+    <view class="mastery-summary">
+      <view class="mastery-item">
+        <text class="mastery-number mastery-number--green">{{masteredCount}}</text>
+        <text class="mastery-label">已掌握</text>
+      </view>
+      <view class="mastery-item">
+        <text class="mastery-number mastery-number--orange">{{reviewCount}}</text>
+        <text class="mastery-label">待复习</text>
+      </view>
+      <view class="mastery-item">
+        <text class="mastery-number">{{todayAnswerCount}}</text>
+        <text class="mastery-label">今日答题</text>
+      </view>
+    </view>
+    <view class="progress-list">
+      <view class="progress-item" wx:for="{{wordSetProgress}}" wx:key="title">
+        <view class="progress-info">
+          <text class="progress-name">{{item.title}}</text>
+          <text class="progress-count">已掌握 {{item.masteredCount}} / {{item.total}}</text>
+        </view>
+        <view class="progress-bar-bg">
+          <view class="progress-bar-fill" style="width: {{item.percent}}%"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 薄弱词 -->
+  <view class="section-card" wx:if="{{weakWords.length > 0}}">
+    <view class="section-title">薄弱词</view>
+    <view class="weak-list">
+      <view class="weak-item" wx:for="{{weakWords}}" wx:key="word">
+        <view class="weak-info">
+          <text class="weak-word">{{item.word}}</text>
+          <text class="weak-meaning">{{item.meaning}}</text>
+        </view>
+        <view class="weak-stats">
+          <text class="weak-correct">对{{item.correctCount}}</text>
+          <text class="weak-wrong">错{{item.wrongCount}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
   <!-- 学习热力图 -->
   <view class="section-card">
     <view class="section-title">{{currentMonth}}学习记录</view>
@@ -62,21 +109,9 @@ module.exports = {
         <text class="today-number">{{utils.formatDuration(todayDuration)}}</text>
         <text class="today-label">学习时长</text>
       </view>
-    </view>
-  </view>
-
-  <!-- 词表进度 -->
-  <view class="section-card" wx:if="{{wordSetProgress.length > 0}}">
-    <view class="section-title">词表进度</view>
-    <view class="progress-list">
-      <view class="progress-item" wx:for="{{wordSetProgress}}" wx:key="title">
-        <view class="progress-info">
-          <text class="progress-name">{{item.title}}</text>
-          <text class="progress-count">{{item.learned}} / {{item.total}}</text>
-        </view>
-        <view class="progress-bar-bg">
-          <view class="progress-bar-fill" style="width: {{item.percent}}%"></view>
-        </view>
+      <view class="today-item" wx:if="{{todayAnswerCount > 0}}">
+        <text class="today-number">{{todayAccuracy}}%</text>
+        <text class="today-label">正确率</text>
       </view>
     </view>
   </view>

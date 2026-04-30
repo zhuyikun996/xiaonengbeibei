@@ -1,5 +1,6 @@
 // pages/home/index.js
 const app = getApp();
+const mastery = require('../../utils/mastery');
 
 Page({
   data: {
@@ -32,12 +33,17 @@ Page({
       const progressIndex = wx.getStorageSync(`progress_${ws.setId}`);
       const hasStarted = progressIndex !== '' && progressIndex !== undefined && progressIndex !== null;
       const learned = hasStarted ? progressIndex + 1 : 0;
-      const percent = Math.round(learned / ws.totalWords * 100);
-      const completed = percent >= 100;
+
+      const masteryStats = mastery.getSetMasteryStats(ws.setId, ws.totalWords);
+      const completed = masteryStats.masteryPercent >= 100;
+
       return {
         ...ws,
         learned,
-        percent,
+        masteredCount: masteryStats.masteredCount,
+        seenCount: masteryStats.seenCount,
+        reviewCount: masteryStats.reviewCount,
+        masteryPercent: masteryStats.masteryPercent,
         completed,
       };
     });
