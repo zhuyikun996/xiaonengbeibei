@@ -4,6 +4,10 @@
     <text class="subtitle">请选择一个词表开始背单词</text>
   </view>
 
+  <view class="mastery-tip">
+    <text class="mastery-tip-text">进度按掌握度计算：同一个词答对 2 次且未答错，才算已掌握。</text>
+  </view>
+
   <view class="wordset-list">
     <view
       class="wordset-card {{item.setId === currentSetId ? 'wordset-card--active' : ''}}"

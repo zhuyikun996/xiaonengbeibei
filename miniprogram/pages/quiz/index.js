@@ -3,7 +3,7 @@ const wordsetRegistry = require('../../data/wordsets/index');
 const phonetics = require('../../data/phonetics');
 const mastery = require('../../utils/mastery');
 
-const ROUND_SIZE = 10;
+const ROUND_SIZE = 5;
 
 Page({
   data: {
@@ -230,6 +230,8 @@ Page({
       this.setData({
         exerciseRevealed: true,
         nextButtonText: '下一个',
+      }, () => {
+        this._scrollToPageBottom();
       });
       return;
     }
@@ -244,6 +246,15 @@ Page({
 
     this._showRoundWord(roundIndex + 1);
     wx.pageScrollTo({ scrollTop: 0, duration: 0 });
+  },
+
+  _scrollToPageBottom() {
+    wx.nextTick(() => {
+      wx.pageScrollTo({
+        selector: '#page-bottom-anchor',
+        duration: 300,
+      });
+    });
   },
 
   _onRoundFinish() {
@@ -388,12 +399,15 @@ Page({
     const progress = this._savedProgress;
     const allWords = this._allWords;
 
-    if (progress >= allWords.length - 1) {
-      this._startNewRound(0, allWords);
-    } else {
-      this._startNewRound(progress + 1, allWords);
-    }
-    wx.pageScrollTo({ scrollTop: 0, duration: 0 });
+    this.setData({ mode: 'study' }, () => {
+      this._studyPhaseStats = null;
+      if (progress >= allWords.length - 1) {
+        this._startNewRound(0, allWords);
+      } else {
+        this._startNewRound(progress + 1, allWords);
+      }
+      wx.pageScrollTo({ scrollTop: 0, duration: 0 });
+    });
   },
 
   switchMode(e) {
@@ -632,10 +646,6 @@ Page({
   goHome() {
     this._pauseTimer();
     wx.reLaunch({ url: '/pages/home/index' });
-  },
-
-  switchRange() {
-    wx.navigateTo({ url: '/pages/home/index?from=quiz' });
   },
 
   goStats() {

@@ -39,19 +39,19 @@ module.exports = {
     <view class="summary-stats">
       <view class="summary-stat-item">
         <text class="summary-stat-value summary-stat-value--green">{{summaryCorrect}}</text>
-        <text class="summary-stat-label">答对</text>
+        <text class="summary-stat-label">本轮答对</text>
       </view>
       <view class="summary-stat-item">
         <text class="summary-stat-value summary-stat-value--red">{{summaryWrong}}</text>
-        <text class="summary-stat-label">答错</text>
+        <text class="summary-stat-label">本轮答错</text>
       </view>
       <view class="summary-stat-item">
         <text class="summary-stat-value">{{summaryAccuracy}}%</text>
-        <text class="summary-stat-label">正确率</text>
+        <text class="summary-stat-label">本轮正确率</text>
       </view>
       <view class="summary-stat-item">
         <text class="summary-stat-value summary-stat-value--blue">{{summaryStreakMax}}</text>
-        <text class="summary-stat-label">最高连对</text>
+        <text class="summary-stat-label">本轮最高连对</text>
       </view>
     </view>
 
@@ -73,13 +73,8 @@ module.exports = {
       <view class="summary-btn summary-btn-primary" bindtap="onNextRound">
         <text>再来一轮</text>
       </view>
-      <view class="summary-btn-row">
-        <view class="summary-btn summary-btn-secondary" bindtap="goHome">
-          <text>返回首页</text>
-        </view>
-        <view class="summary-btn summary-btn-orange" bindtap="onSharePoster">
-          <text>分享打卡</text>
-        </view>
+      <view class="summary-btn summary-btn-orange" bindtap="onSharePoster">
+        <text>分享打卡</text>
       </view>
     </view>
   </view>
@@ -92,9 +87,6 @@ module.exports = {
         <text class="top-btn-text">首页</text>
       </view>
       <view class="top-bar-right">
-        <view class="top-btn" bindtap="switchRange">
-          <text class="top-btn-text">切换范围</text>
-        </view>
         <view class="top-btn" bindtap="goStats">
           <text class="top-btn-text">背诵统计</text>
         </view>
@@ -293,4 +285,6 @@ module.exports = {
     streakDays="{{streakDaysForPoster}}"
     bind:close="onClosePoster"
   ></share-poster>
+
+  <view id="page-bottom-anchor"></view>
 </view>
