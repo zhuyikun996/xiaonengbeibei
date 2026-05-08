@@ -8,6 +8,7 @@ module.exports = {
   },
   phaseLabel: function(phase) {
     if (phase === 'study') return '学习中';
+    if (phase === 'test') return '本轮自测';
     if (phase === 'review') return '错题再练';
     if (phase === 'done') return '本轮完成';
     return '';
@@ -83,9 +84,6 @@ module.exports = {
   <block wx:if="{{roundPhase !== 'done'}}">
     <!-- 顶部导航 -->
     <view class="top-bar">
-      <view class="top-btn" bindtap="goHome">
-        <text class="top-btn-text">首页</text>
-      </view>
       <view class="top-bar-right">
         <view class="top-btn" bindtap="goStats">
           <text class="top-btn-text">背诵统计</text>
@@ -274,7 +272,7 @@ module.exports = {
         class="nav-btn nav-btn-next"
         bindtap="nextWord"
       >
-        <text>{{roundIndex >= roundTotal - 1 ? '完成本轮' : nextButtonText}}</text>
+        <text>{{nextButtonText}}</text>
       </view>
     </view>
   </block>

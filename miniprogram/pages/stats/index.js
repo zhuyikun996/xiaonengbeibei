@@ -21,6 +21,32 @@ function getMonthDays(year, month) {
   return new Date(year, month + 1, 0).getDate();
 }
 
+function getMergedStudyLogs() {
+  const dailyLogs = mastery.getDailyLog();
+  const studyLogs = wx.getStorageSync('study_log') || {};
+  const dates = new Set(Object.keys(dailyLogs).concat(Object.keys(studyLogs)));
+  const logs = {};
+
+  dates.forEach(date => {
+    const dailyLog = dailyLogs[date] || {};
+    const studyLog = studyLogs[date] || {};
+    const dailyWords = dailyLog.wordIndices || [];
+    const studyWords = studyLog.wordIndices || [];
+    const wordIndices = dailyWords.length > 0 ? dailyWords : studyWords;
+
+    logs[date] = {
+      setId: dailyLog.setId || studyLog.setId,
+      wordIndices,
+      duration: dailyLog.duration || studyLog.duration || 0,
+      answerCount: dailyLog.answerCount || 0,
+      answerCorrect: dailyLog.answerCorrect || 0,
+      answerWrong: dailyLog.answerWrong || 0,
+    };
+  });
+
+  return logs;
+}
+
 Page({
   data: {
     streakDays: 0,
@@ -44,7 +70,7 @@ Page({
   },
 
   _loadStats() {
-    const logs = wx.getStorageSync('study_log') || {};
+    const logs = getMergedStudyLogs();
     const today = getToday();
 
     // 计算连续打卡天数

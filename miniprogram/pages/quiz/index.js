@@ -115,10 +115,12 @@ Page({
     this._setId = setId;
 
     const progressKey = `progress_${setId}`;
-    const savedIndex = wx.getStorageSync(progressKey) || 0;
-    this._savedProgress = savedIndex;
+    const savedProgress = wx.getStorageSync(progressKey);
+    const savedIndex = Number(savedProgress);
+    const hasProgress = savedProgress !== '' && savedProgress !== undefined && savedProgress !== null && !Number.isNaN(savedIndex);
+    this._savedProgress = hasProgress ? savedIndex : -1;
 
-    const start = Math.min(savedIndex, allWords.length);
+    const start = hasProgress ? Math.min(savedIndex + 1, allWords.length) : 0;
     const remaining = allWords.length - start;
     const roundTotal = Math.min(ROUND_SIZE, remaining);
 
@@ -133,9 +135,41 @@ Page({
   _startNewRound(startIndex, allWords) {
     const roundTotal = Math.min(ROUND_SIZE, allWords.length - startIndex);
     const roundWords = allWords.slice(startIndex, startIndex + roundTotal);
+    this._roundStartIndex = startIndex;
 
-    this._addWordToLog(startIndex);
+    this._startRoundWithWords(roundWords);
+  },
+
+  _startRandomUnmasteredRound() {
+    const unmasteredWords = (this._allWords || []).filter(word => {
+      const wordMastery = mastery.getWordMastery(this._setId, word.id);
+      return !wordMastery || !wordMastery.mastered;
+    });
+
+    if (unmasteredWords.length === 0) {
+      wx.showToast({ title: '当前词表已全部掌握', icon: 'none' });
+      return;
+    }
+
+    this._roundStartIndex = null;
+    this._startRoundWithWords(this._pickRandomWords(unmasteredWords, ROUND_SIZE));
+  },
+
+  _pickRandomWords(words, count) {
+    const shuffled = words.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const temp = shuffled[i];
+      shuffled[i] = shuffled[j];
+      shuffled[j] = temp;
+    }
+    return shuffled.slice(0, Math.min(count, shuffled.length));
+  },
+
+  _startRoundWithWords(roundWords) {
+    const roundTotal = roundWords.length;
     this._hasReviewed = false;
+    this._studyPhaseStats = null;
 
     this.setData({
       wordSetTitle: wordsetRegistry.getWordSetById(this._setId).title,
@@ -174,6 +208,11 @@ Page({
       ...currentWord,
       phonetic: phonetics[currentWord.word] || '',
     } : null;
+    const isLastWord = index >= roundWords.length - 1;
+
+    if (currentWord && mode === 'study') {
+      this._addWordToLog(currentWord.id);
+    }
 
     this.setData({
       currentWord: wordWithPhonetic,
@@ -191,7 +230,7 @@ Page({
       fillInput: '',
       nextButtonText: isTestMode && exerciseState.currentExercise
         ? '先答题'
-        : (hasExercise ? '揭晓答案' : '下一个'),
+        : (hasExercise ? '揭晓答案' : (isLastWord ? '开始自测' : '下一个')),
     });
   },
 
@@ -221,7 +260,7 @@ Page({
 
     if (roundPhase === 'done') return;
 
-    if (mode === 'test' && currentExercise && currentExercise.type === 'choice' && !answered) {
+    if (mode === 'test' && currentExercise && !answered) {
       wx.showToast({ title: '先完成作答', icon: 'none' });
       return;
     }
@@ -229,7 +268,7 @@ Page({
     if (mode === 'study' && showExercise && !exerciseRevealed) {
       this.setData({
         exerciseRevealed: true,
-        nextButtonText: '下一个',
+        nextButtonText: roundIndex >= roundTotal - 1 ? '开始自测' : '下一个',
       }, () => {
         this._scrollToPageBottom();
       });
@@ -260,14 +299,14 @@ Page({
   _onRoundFinish() {
     const { mode, roundWrongPool, roundWords } = this.data;
 
-    const startOffset = this._savedProgress;
-    const newProgress = startOffset + roundWords.length;
-    if (newProgress <= this._allWords.length) {
-      wx.setStorageSync(`progress_${this._setId}`, Math.min(newProgress, this._allWords.length - 1));
-      this._savedProgress = Math.min(newProgress, this._allWords.length - 1);
-    }
-
     if (mode === 'study') {
+      const lastCompletedIndex = typeof this._roundStartIndex === 'number'
+        ? this._roundStartIndex + roundWords.length - 1
+        : null;
+      if (lastCompletedIndex !== null && lastCompletedIndex > this._savedProgress) {
+        wx.setStorageSync(`progress_${this._setId}`, lastCompletedIndex);
+        this._savedProgress = lastCompletedIndex;
+      }
       this._startTestRound();
       return;
     }
@@ -291,7 +330,7 @@ Page({
 
     this.setData({
       mode: 'test',
-      roundPhase: 'study',
+      roundPhase: 'test',
       roundIndex: 0,
       roundWrongPool: [],
       roundCorrectCount: 0,
@@ -396,16 +435,9 @@ Page({
   },
 
   onNextRound() {
-    const progress = this._savedProgress;
-    const allWords = this._allWords;
-
     this.setData({ mode: 'study' }, () => {
       this._studyPhaseStats = null;
-      if (progress >= allWords.length - 1) {
-        this._startNewRound(0, allWords);
-      } else {
-        this._startNewRound(progress + 1, allWords);
-      }
+      this._startRandomUnmasteredRound();
       wx.pageScrollTo({ scrollTop: 0, duration: 0 });
     });
   },
@@ -413,6 +445,11 @@ Page({
   switchMode(e) {
     const { mode } = e.currentTarget.dataset;
     if (!mode || mode === this.data.mode) return;
+
+    if (this.data.roundPhase === 'review') {
+      wx.showToast({ title: '先完成错题再练', icon: 'none' });
+      return;
+    }
 
     if (this.data.roundPhase === 'done') {
       this.setData({ mode }, () => {
@@ -427,7 +464,10 @@ Page({
       return;
     }
 
-    this.setData({ mode }, () => {
+    this.setData({
+      mode,
+      roundPhase: mode === 'test' ? 'test' : 'study',
+    }, () => {
       this._showRoundWord(this.data.roundIndex);
     });
   },
@@ -527,7 +567,7 @@ Page({
 
     const updateObj = {
       ...extraState,
-      nextButtonText: '下一个',
+      nextButtonText: this.data.roundIndex >= this.data.roundTotal - 1 ? '完成本轮' : '下一个',
     };
 
     if (mode === 'test') {
@@ -641,11 +681,6 @@ Page({
     }).filter(Boolean);
 
     return { prompt: promptLines.join('\n'), options };
-  },
-
-  goHome() {
-    this._pauseTimer();
-    wx.reLaunch({ url: '/pages/home/index' });
   },
 
   goStats() {

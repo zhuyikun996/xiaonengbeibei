@@ -5,7 +5,7 @@
   </view>
 
   <view class="mastery-tip">
-    <text class="mastery-tip-text">进度按掌握度计算：同一个词答对 2 次且未答错，才算已掌握。</text>
+    <text class="mastery-tip-text">进度按掌握度计算：一个词至少答对 2 次、正确率达到 80%，且最近一次答对，才算已掌握。</text>
   </view>
 
   <view class="wordset-list">
@@ -31,8 +31,9 @@
         <view class="progress-text">
           <text wx:if="{{item.completed}}" class="progress-label progress-label--done">已掌握</text>
           <text wx:elif="{{item.masteredCount > 0}}" class="progress-label">掌握 {{item.masteryPercent}}%</text>
+          <text wx:elif="{{item.seenCount > 0}}" class="progress-label">已练习，待掌握</text>
           <text wx:else class="progress-label">未开始</text>
-          <text class="progress-detail">已掌握 {{item.masteredCount}}/{{item.totalWords}} 词</text>
+          <text class="progress-detail">已掌握 {{item.masteredCount}}/{{item.totalWords}} 词 · 已练 {{item.seenCount}} 词</text>
         </view>
       </view>
     </view>

@@ -126,6 +126,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 8rpx 16rpx;
   margin-top: 8rpx;
 }
 

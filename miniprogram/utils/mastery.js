@@ -16,7 +16,7 @@
  * }}
  *
  * mastered 判定规则（简单、可解释）：
- *   correctCount >= 2 且 wrongCount === 0
+ *   至少答对 2 次，正确率不低于 80%，且最近一次答对
  */
 
 function getToday() {
@@ -57,6 +57,7 @@ function recordAnswer(setId, word, isCorrect) {
     correctCount: 0,
     wrongCount: 0,
     lastStudiedAt: '',
+    lastIsCorrect: false,
     mastered: false,
   };
 
@@ -67,7 +68,11 @@ function recordAnswer(setId, word, isCorrect) {
     m.wrongCount++;
   }
   m.lastStudiedAt = getToday();
-  m.mastered = m.correctCount >= 2 && m.wrongCount === 0;
+  m.lastIsCorrect = isCorrect;
+
+  const totalAnswers = m.correctCount + m.wrongCount;
+  const accuracy = totalAnswers > 0 ? m.correctCount / totalAnswers : 0;
+  m.mastered = m.correctCount >= 2 && accuracy >= 0.8 && m.lastIsCorrect;
 
   map[key] = m;
   _saveMasteryMap(map);
@@ -193,19 +198,16 @@ function getTodayStats() {
 
 // 兼容旧 study_log 的打卡天数计算
 function getTotalStudyDays() {
-  // 优先从 daily_log
   const dailyLogs = getDailyLog();
-  const dailyDays = Object.keys(dailyLogs).filter(k => {
-    const log = dailyLogs[k];
-    return log && log.wordIndices && log.wordIndices.length > 0;
-  }).length;
-
-  // 如果 daily_log 没数据，回退到旧 study_log
-  if (dailyDays > 0) return dailyDays;
-
   const studyLogs = wx.getStorageSync('study_log') || {};
-  return Object.keys(studyLogs).filter(k => {
-    return studyLogs[k] && studyLogs[k].wordIndices && studyLogs[k].wordIndices.length > 0;
+  const dates = new Set(Object.keys(dailyLogs).concat(Object.keys(studyLogs)));
+
+  return Array.from(dates).filter(k => {
+    const dailyLog = dailyLogs[k];
+    const studyLog = studyLogs[k];
+    const dailyWords = dailyLog && dailyLog.wordIndices ? dailyLog.wordIndices.length : 0;
+    const studyWords = studyLog && studyLog.wordIndices ? studyLog.wordIndices.length : 0;
+    return dailyWords > 0 || studyWords > 0;
   }).length;
 }
 

@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/quiz/index",
     "pages/home/index",
+    "pages/quiz/index",
     "pages/stats/index"
   ],
   "window": {
